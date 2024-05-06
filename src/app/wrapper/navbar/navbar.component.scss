@@ -1,0 +1,35 @@
+.top-header {
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: blue;
+    align-items: self-end;
+}
+
+.header-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 50vw;
+    height: 10vh;
+
+}
+
+.header-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: inherit;
+    height: inherit;
+}
+
+.top-menu-item {
+
+}
+
+.top-item-link {
+    text-decoration: none;
+    color: white;
+}
