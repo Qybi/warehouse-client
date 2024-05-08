@@ -1,17 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TodoService } from './todo.service';
+import { PCModelStockService } from './pcmodel-stock.service';
 
-describe('TodoService', () => {
-  let service: TodoService;
+describe('PCModelStockService', () => {
+  let service: PCModelStockService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(TodoService);
+    service = TestBed.inject(PCModelStockService);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 });
-

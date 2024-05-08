@@ -1,17 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TodoService } from './todo.service';
+import { PCAssignmentService } from './pcassignment.service';
 
-describe('TodoService', () => {
-  let service: TodoService;
+describe('PCAssignmentService', () => {
+  let service: PCAssignmentService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(TodoService);
+    service = TestBed.inject(PCAssignmentService);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 });
-
