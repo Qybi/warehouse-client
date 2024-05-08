@@ -3,33 +3,37 @@
     height: 10vh;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    background-color: blue;
-    align-items: self-end;
+    justify-content: right;
+    background-color: #b6b6b6;
+    
 }
 
 .header-nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 50vw;
+    width: 40vw;
     height: 10vh;
-
 }
 
 .header-menu {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: inherit;
+    place-items: center;
+    margin: 0;
+    width: 80%;
     height: inherit;
-}
-
-.top-menu-item {
-
+    list-style: none;
+    font-size: 1.2rem;
 }
 
 .top-item-link {
     text-decoration: none;
     color: white;
+    transition: all .2s ease-in-out;
+}
+
+.top-item-link:hover{
+    border-bottom: 2px solid #fff;
 }
