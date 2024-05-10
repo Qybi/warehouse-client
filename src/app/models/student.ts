@@ -1,4 +1,6 @@
-export interface Students {
+import { Course } from "./course";
+
+export interface Student {
   id: number;
   userId: number;
   schoolIdentifierId: string;
@@ -30,4 +32,6 @@ export interface Students {
   professionalStatus: string;
   isInInternship: boolean;
   notes: string;
+
+  course: Course;
 }
