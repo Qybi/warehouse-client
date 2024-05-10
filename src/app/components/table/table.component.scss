@@ -1,0 +1,26 @@
+#Pcs {
+  border-collapse: collapse;
+  border: 1px solid #333;
+  width: 70vw;
+}
+
+#Pcs th, td {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+  border: 1px solid #333;
+  padding: 0.75rem;
+  text-align: center;
+  width: fit-content;
+}
+
+#Pcs th {
+  background-color: #caa5a5;
+}
+
+#Pcs td {
+  background-color: #f9e9e9;
+}
+
+#Pcs td:hover {
+  background-color: rgb(181, 197, 149);
+}
