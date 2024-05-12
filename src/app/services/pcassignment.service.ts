@@ -5,7 +5,7 @@ import {
   HttpParamsOptions,
 }from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PCAssignment } from '../models/pcassignments'; // Assicurati di importare il modello corretto per i corsi
+import { PCAssignment } from '../models/pcassignment'; // Assicurati di importare il modello corretto per i corsi
 
 @Injectable({
   providedIn: 'root',

@@ -1,4 +1,4 @@
-export interface Accessories {
+export interface Accessory {
   id: number;
   stockId: number;
   name: string;

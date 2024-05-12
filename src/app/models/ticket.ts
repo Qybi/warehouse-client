@@ -1,4 +1,4 @@
-export interface Tickets {
+export interface Ticket {
   id: number;
   studentId: number;
   ticketType: string;

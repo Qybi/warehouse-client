@@ -1,4 +1,4 @@
-export interface AccessoriesAssignments {
+export interface AccessoriesAssignment {
   id: number;
   accessoryId: number;
   studentId: number;

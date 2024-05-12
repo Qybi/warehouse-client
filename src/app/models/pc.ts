@@ -1,4 +1,6 @@
-export interface Pcs {
+import { PCModelStock } from "./pcmodel-stock";
+
+export interface Pc {
   id: number;
   stockId: number;
   serial: string;
@@ -7,4 +9,6 @@ export interface Pcs {
   status: string;
   useCycle: number;
   notes: string;
+
+  model: PCModelStock;
 }
