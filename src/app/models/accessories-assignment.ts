@@ -1,3 +1,5 @@
+import { Accessory } from "./accessory";
+
 export interface AccessoriesAssignment {
   id: number;
   accessoryId: number;
@@ -8,4 +10,6 @@ export interface AccessoriesAssignment {
   forecastedReturnDate: string;
   actualReturnDate: string;
   returnReasonId: number;
+
+  accessory: Accessory;
 }

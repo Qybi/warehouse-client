@@ -8,8 +8,15 @@ export interface StudentView {
     name: string;
     dateOfBirth: string;
     fiscalCode: string;
-    course: Course;
     emailUser: string;
+    schoolIdentifier: string;
+    status: string;
+    birthCity: string;
+    birthCountry: string;
+    residenceCity: string;
+    residenceCountry: string;
+    
+    course: Course;
     pcAssignments: PCAssignment[];
     accessoryAssignments: AccessoriesAssignment[];
 }

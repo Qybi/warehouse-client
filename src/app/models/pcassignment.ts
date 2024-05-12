@@ -1,3 +1,5 @@
+import { Pc } from "./pc";
+
 export interface PCAssignment {
   id: number;
   pcId: number;
@@ -8,4 +10,6 @@ export interface PCAssignment {
   forecastedReturnDate: string;
   actualReturnDate: string;
   returnReasonId: number;
+
+  pc: Pc;
 }

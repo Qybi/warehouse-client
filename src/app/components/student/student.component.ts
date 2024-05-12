@@ -13,7 +13,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './student.component.scss',
 })
 export class StudentComponent implements OnInit {
-  student: StudentView = {} as StudentView;
+  student: StudentView = {
+    course: {}
+  } as StudentView;
 
   constructor(
     private studentService: StudentService,
@@ -22,7 +24,7 @@ export class StudentComponent implements OnInit {
 
   ngOnInit() {
     const id = +(this.activatedRoute.snapshot.paramMap.get('id')||0);
-    this.studentService.getStudent(id).subscribe((student) => {
+    this.studentService.getStudentDetails(id).subscribe((student) => {
       this.student = student;
     });
   }

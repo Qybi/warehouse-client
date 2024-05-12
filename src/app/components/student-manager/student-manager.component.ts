@@ -26,11 +26,10 @@ export class StudentManagerComponent {
   ) {}
 
   ngOnInit() {
-    // this.studentService.getStudents().subscribe(students => {
-    //   this.students = students;
-    // });
-    this.students = this.studentService.getStudents();
-    this.displayStudents = this.students.map((x) => x);
+    this.studentService.getStudents().subscribe((students) => {
+      this.students = students;
+      this.displayStudents = this.students.map((x) => x);
+    });
   }
 
   searchStudent() {
