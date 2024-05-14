@@ -10,4 +10,7 @@ import { WrapperComponent } from './wrapper/wrapper.component';
   styleUrl: './app.component.scss'
 })
 export class AppComponent{
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
 }
