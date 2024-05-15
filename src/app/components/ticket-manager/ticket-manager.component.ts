@@ -20,16 +20,11 @@ export class TicketManagerComponent {
   ){}
 
   ngOnInit() {
-    this.ticketService.getTickets().subscribe((tickets) => {
+    this.ticketService.getOpenTickets().subscribe((tickets) => {
       this.tickets = tickets;
       this.displayTickets = this.tickets.map((x) => x);
     });
   }
 
-  openImport() {
-    // const m = this.modalService.open(ModalImportFileComponent, {
-    //   size: 'lg',
-    // });
-    // m.componentInstance.preRender('Import PCs', 'Select a file to import PCs');
-  }
+  
 }
