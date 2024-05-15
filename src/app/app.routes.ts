@@ -10,6 +10,7 @@ import { StudentManagerComponent } from './components/student-manager/student-ma
 import { StudentComponent } from './components/student/student.component';
 import { PcManagerComponent } from './components/pc-manager/pc-manager.component';
 import { AccessoriesManagerComponent } from './components/accessories-manager/accessories-manager.component';
+import { ArchivesComponent } from './components/archives/archives.component';
 
 export const routes: Routes = [
     { path: 'home', pathMatch: 'full', component: HomeComponent },
@@ -21,17 +22,15 @@ export const routes: Routes = [
     // { path: 'administration/archivi-pc', pathMatch: 'full', component: ArchiviPCComponent },
     // { path: 'administration/archivi-accessori', pathMatch: 'full', component: ArchiviAccessoriComponent },
     // { path: 'administration/archivi-studenti', pathMatch: 'full', component: ArchiviStudentiComponent },
-    { 
-        path: 'administration', 
-        component: AdminComponent,
-        children: [
-            { path: 'archivi-pc', pathMatch: 'full', component: ArchiviPCComponent },
-            { path: 'archivi-accessori', pathMatch: 'full', component: ArchiviAccessoriComponent },
-            { path: 'archivi-studenti', pathMatch: 'full', component: ArchiviStudentiComponent }
-        ]
-    },
-    // { path: 'modalBundle', pathMatch: 'full', component: ModalAssignBundleComponent },
-    // { path: 'modalPc', pathMatch: 'full', component: ModalAssignPcComponent },
-    // { path: 'modalAccessories', pathMatch: 'full', component: ModalAssignAccessoriesComponent },
+    // { 
+    //     path: 'administration', 
+    //     component: AdminComponent,
+    //     children: [
+    //         { path: 'archivi-pc', pathMatch: 'full', component: ArchiviPCComponent },
+    //         { path: 'archivi-accessori', pathMatch: 'full', component: ArchiviAccessoriComponent },
+    //         { path: 'archivi-studenti', pathMatch: 'full', component: ArchiviStudentiComponent }
+    //     ]
+    // },
+    { path: 'archives', pathMatch: 'full', component: ArchivesComponent },
     { path: '*', pathMatch: 'full', component: HomeComponent }
 ];
