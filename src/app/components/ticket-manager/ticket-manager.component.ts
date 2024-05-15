@@ -26,5 +26,10 @@ export class TicketManagerComponent {
     });
   }
 
-  
+  openImport() {
+    // const m = this.modalService.open(ModalImportFileComponent, {
+    //   size: 'lg',
+    // });
+    // m.componentInstance.preRender('Import PCs', 'Select a file to import PCs');
+  }
 }
