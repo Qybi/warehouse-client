@@ -5,6 +5,8 @@ import { StudentManagerComponent } from './components/student-manager/student-ma
 import { StudentComponent } from './components/student/student.component';
 import { PcManagerComponent } from './components/pc-manager/pc-manager.component';
 import { AccessoriesManagerComponent } from './components/accessories-manager/accessories-manager.component';
+import { TicketManagerComponent } from './components/ticket-manager/ticket-manager.component';
+import { TicketComponent } from './components/ticket/ticket.component';
 
 export const routes: Routes = [
     { path: 'home', pathMatch: 'full', component: HomeComponent },
@@ -12,8 +14,7 @@ export const routes: Routes = [
     { path: 'students/:id', pathMatch: 'full', component: StudentComponent },
     { path: 'pcs', pathMatch: 'full', component: PcManagerComponent },
     { path: 'accessories', pathMatch: 'full', component: AccessoriesManagerComponent },
-    // { path: 'modalBundle', pathMatch: 'full', component: ModalAssignBundleComponent },
-    // { path: 'modalPc', pathMatch: 'full', component: ModalAssignPcComponent },
-    // { path: 'modalAccessories', pathMatch: 'full', component: ModalAssignAccessoriesComponent },
+    { path: 'tickets', pathMatch: 'full', component: TicketManagerComponent },
+    { path: 'tickets/:id', pathMatch: 'full', component: TicketComponent },
     { path: '*', pathMatch: 'full', component: HomeComponent }
 ];
