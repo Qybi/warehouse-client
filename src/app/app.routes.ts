@@ -1,6 +1,11 @@
 import { Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { AdminComponent } from './components/administration/admin/admin.component';
+import { ArchiviPCComponent } from './components/administration/archivi-pc/archivi-pc.component';
+import { ArchiviAccessoriComponent } from './components/administration/archivi-accessori/archivi-accessori.component';
+import { ArchiviStudentiComponent } from './components/administration/archivi-studenti/archivi-studenti.component';
+
 import { StudentManagerComponent } from './components/student-manager/student-manager.component';
 import { StudentComponent } from './components/student/student.component';
 import { PcManagerComponent } from './components/pc-manager/pc-manager.component';
@@ -12,6 +17,19 @@ export const routes: Routes = [
     { path: 'students/:id', pathMatch: 'full', component: StudentComponent },
     { path: 'pcs', pathMatch: 'full', component: PcManagerComponent },
     { path: 'accessories', pathMatch: 'full', component: AccessoriesManagerComponent },
+    // { path: 'administration', pathMatch: 'full', component: AdminComponent },
+    // { path: 'administration/archivi-pc', pathMatch: 'full', component: ArchiviPCComponent },
+    // { path: 'administration/archivi-accessori', pathMatch: 'full', component: ArchiviAccessoriComponent },
+    // { path: 'administration/archivi-studenti', pathMatch: 'full', component: ArchiviStudentiComponent },
+    { 
+        path: 'administration', 
+        component: AdminComponent,
+        children: [
+            { path: 'archivi-pc', pathMatch: 'full', component: ArchiviPCComponent },
+            { path: 'archivi-accessori', pathMatch: 'full', component: ArchiviAccessoriComponent },
+            { path: 'archivi-studenti', pathMatch: 'full', component: ArchiviStudentiComponent }
+        ]
+    },
     // { path: 'modalBundle', pathMatch: 'full', component: ModalAssignBundleComponent },
     // { path: 'modalPc', pathMatch: 'full', component: ModalAssignPcComponent },
     // { path: 'modalAccessories', pathMatch: 'full', component: ModalAssignAccessoriesComponent },
