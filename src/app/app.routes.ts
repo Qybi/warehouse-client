@@ -11,6 +11,7 @@ import { StudentComponent } from './components/student/student.component';
 import { PcManagerComponent } from './components/pc-manager/pc-manager.component';
 import { AccessoriesManagerComponent } from './components/accessories-manager/accessories-manager.component';
 import { ArchivesComponent } from './components/archives/archives.component';
+import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
     { path: 'home', pathMatch: 'full', component: HomeComponent },
@@ -31,6 +32,7 @@ export const routes: Routes = [
     //         { path: 'archivi-studenti', pathMatch: 'full', component: ArchiviStudentiComponent }
     //     ]
     // },
+    { path: 'login', pathMatch: 'full', component: LoginComponent },
     { path: 'archives', pathMatch: 'full', component: ArchivesComponent },
     { path: '*', pathMatch: 'full', component: HomeComponent }
 ];
