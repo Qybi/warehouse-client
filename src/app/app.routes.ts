@@ -16,17 +16,17 @@ import { LoginComponent } from './components/login/login.component';
 
 export const AuthenticatedRoutes: Routes = [
   { path: 'login', pathMatch: 'full', component: LoginComponent },
-  { path: '*', pathMatch: 'full', component: HomeComponent },
-  { path: 'pcs', pathMatch: 'full', component: PcManagerComponent },
-  {
-    path: 'accessories',
-    pathMatch: 'full',
-    component: AccessoriesManagerComponent,
-  },
   createWrapperChildren([
-  { path: 'home', pathMatch: 'full', component: HomeComponent },
-  { path: 'students', pathMatch: 'full', component: StudentManagerComponent },
+    { path: 'home', pathMatch: 'full', component: HomeComponent },
+    { path: 'students', pathMatch: 'full', component: StudentManagerComponent },
     { path: 'students/:id', pathMatch: 'full', component: StudentComponent },
+    { path: 'pcs', pathMatch: 'full', component: PcManagerComponent },
+    {
+      path: 'accessories',
+      pathMatch: 'full',
+      component: AccessoriesManagerComponent,
+    },
+    { path: 'archives', pathMatch: 'full', component: ArchivesComponent },
   ]),
   // { path: 'administration', pathMatch: 'full', component: AdminComponent },
   // { path: 'administration/archivi-pc', pathMatch: 'full', component: ArchiviPCComponent },
@@ -41,7 +41,5 @@ export const AuthenticatedRoutes: Routes = [
   //         { path: 'archivi-studenti', pathMatch: 'full', component: ArchiviStudentiComponent }
   //     ]
   // },
-  { path: 'login', pathMatch: 'full', component: LoginComponent },
-  { path: 'archives', pathMatch: 'full', component: ArchivesComponent },
   { path: '*', pathMatch: 'full', component: HomeComponent },
 ];
