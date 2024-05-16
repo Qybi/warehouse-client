@@ -2,9 +2,6 @@ import { Route, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { AdminComponent } from './components/administration/admin/admin.component';
-import { ArchiviPCComponent } from './components/administration/archivi-pc/archivi-pc.component';
-import { ArchiviAccessoriComponent } from './components/administration/archivi-accessori/archivi-accessori.component';
-import { ArchiviStudentiComponent } from './components/administration/archivi-studenti/archivi-studenti.component';
 
 import { StudentManagerComponent } from './components/student-manager/student-manager.component';
 import { StudentComponent } from './components/student/student.component';
@@ -14,7 +11,7 @@ import { AccessoriesManagerComponent } from './components/accessories-manager/ac
 import { ArchivesComponent } from './components/archives/archives.component';
 import { LoginComponent } from './components/login/login.component';
 
-export const AuthenticatedRoutes: Routes = [
+export const routes: Routes = [
   { path: 'login', pathMatch: 'full', component: LoginComponent },
   createWrapperChildren([
     { path: 'home', pathMatch: 'full', component: HomeComponent },
@@ -28,18 +25,5 @@ export const AuthenticatedRoutes: Routes = [
     },
     { path: 'archives', pathMatch: 'full', component: ArchivesComponent },
   ]),
-  // { path: 'administration', pathMatch: 'full', component: AdminComponent },
-  // { path: 'administration/archivi-pc', pathMatch: 'full', component: ArchiviPCComponent },
-  // { path: 'administration/archivi-accessori', pathMatch: 'full', component: ArchiviAccessoriComponent },
-  // { path: 'administration/archivi-studenti', pathMatch: 'full', component: ArchiviStudentiComponent },
-  // {
-  //     path: 'administration',
-  //     component: AdminComponent,
-  //     children: [
-  //         { path: 'archivi-pc', pathMatch: 'full', component: ArchiviPCComponent },
-  //         { path: 'archivi-accessori', pathMatch: 'full', component: ArchiviAccessoriComponent },
-  //         { path: 'archivi-studenti', pathMatch: 'full', component: ArchiviStudentiComponent }
-  //     ]
-  // },
-  { path: '*', pathMatch: 'full', component: HomeComponent },
+  { path: '**', redirectTo: 'home'},
 ];

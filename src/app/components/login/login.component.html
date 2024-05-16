@@ -9,6 +9,6 @@
             <label for="passwordInut">Password</label>
             <input type="password" name="passwordInput" id="passwordInput" [(ngModel)]="password" placeholder="Password" class="mt-2 rounded">
         </div>
-        <button type="submit" class="btn btn-primary m-4 w-25">LogIn</button>
+        <button type="submit" (click)="login()" class="btn btn-primary m-4 w-25">LogIn</button>
     </form>
 </div>
