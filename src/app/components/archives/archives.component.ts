@@ -20,6 +20,9 @@ import { ModalAssignBundleComponent } from '../modals/shared/modal-assign-bundle
   styleUrl: './archives.component.scss'
 })
 export class ArchivesComponent {
+
+  
+
   constructor(
     private router: Router,
     private studentService: StudentService,
@@ -29,7 +32,7 @@ export class ArchivesComponent {
     this.router.navigate(['/administration', route]);
   }
 
-  openImport() {
+  openImportStudents() {
     const m = this.modalService.open(ModalImportFileComponent, {
       size: 'lg', 
       backdrop: 'static',
@@ -40,5 +43,13 @@ export class ArchivesComponent {
     m.result.then((result) => {
       console.log(result);
     });
+  }
+
+  openImportPc(){
+
+  }
+
+  openImportAccessories(){
+
   }
 }

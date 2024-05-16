@@ -1,11 +1,3 @@
-<!-- 
-    <div>
-        <button (click)="navigateTo('archivi-pc')">Upload Archivi PC</button>
-        <button (click)="navigateTo('archivi-accessori')">Upload Archivi Accessori</button>
-        <button (click)="navigateTo('archivi-studenti')">Upload Archivi Studenti</button>
-    </div>
--->
-
 <div class="container mt-4">
     <div class="card">
         <div class="card-body">
@@ -14,21 +6,21 @@
             </div>
             <div class="row">
                 <div class="col-2 d-flex">
-                    <button (click)="openImport()" class="btn btn-sm btn-outline-success">
+                    <button (click)="openImportStudents()" class="btn btn-sm btn-outline-primary">
                         <i class="fa-solid fa-file-import"></i>
                         <span  class="ms-1">Importa studenti</span>
                     </button>
                 </div>
                 
                 <div class="col-2 d-flex">
-                    <button (click)="openImport()" class="btn btn-sm btn-outline-success">
+                    <button (click)="openImportPc()" class="btn btn-sm btn-outline-success">
                         <i class="fa-solid fa-file-import"></i>
                         <span  class="ms-1">Importa PC</span>
                     </button>
                 </div>
                 
                 <div class="col-2 d-flex">
-                    <button (click)="openImport()" class="btn btn-sm btn-outline-success">
+                    <button (click)="openImportAccessories()" class="btn btn-sm btn-outline-danger">
                         <i class="fa-solid fa-file-import"></i>
                         <span  class="ms-1">Importa Accessori</span>
                     </button>
