@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FileUploaderService } from '../../../../services/file-uploader.service';
+import * as ExcelJS from 'exceljs';
+import { IndexedFieldWithPossiblyUndefined, NumericDictionary } from 'lodash';
 
 @Component({
   selector: 'app-modal-import-file',
@@ -37,5 +39,41 @@ export class ModalImportFileComponent {
     //   }, error => {
     //     console.log(error);
     //   });
+  }
+
+  onFileChange(event: any): void {
+    const file = event.target.files[0];
+    const fileReader = new FileReader();
+
+    fileReader.onload = (e: any) => {
+      const arrayBuffer = e.target.result;
+      this.parseExcel(arrayBuffer);
+    };
+
+    fileReader.readAsArrayBuffer(file);
+  }
+
+  parseExcel(arrayBuffer: any): void {
+    const workbook = new ExcelJS.Workbook();
+    workbook.xlsx.load(arrayBuffer).then((workbook) => {
+      let jsonData: any[] = [];
+      workbook.eachSheet((worksheet, sheetId) => {
+        const rowName:any[] = [];
+        worksheet.eachRow({ includeEmpty: false }, (row, rowNumber) => {
+          let rowData: any = {};
+          let count:number = 0;
+          row.eachCell({ includeEmpty: true }, (cell, colNumber) => {
+            if(rowNumber === 1){
+              rowName.push(cell.value);
+            }else{
+              rowData[rowName[count++]] = cell.value;
+            }
+          });
+          jsonData.push(rowData);
+        });
+      });
+  
+      console.log(JSON.stringify(jsonData, null, 2));
+    });
   }
 }
