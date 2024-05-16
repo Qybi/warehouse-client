@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from './navbar/navbar.component';
-import { RouterOutlet } from '@angular/router';
+import { Route, RouterOutlet, Routes } from '@angular/router';
 import { TableComponent } from '../components/table/table.component';
+import { authGuard } from '../guards/auth.guard';
 
 
 @Component({
@@ -13,4 +14,13 @@ import { TableComponent } from '../components/table/table.component';
 })
 export class WrapperComponent {
   
+}
+
+export function createWrapperChildren(route: Routes): Route {
+  return {
+    path: '',
+    children: route,
+    component: WrapperComponent,
+    canActivate: [authGuard]
+  }
 }
