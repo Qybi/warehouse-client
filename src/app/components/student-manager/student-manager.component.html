@@ -20,11 +20,24 @@
             </button>
           </form>
         </div>
-        <div class="col-6"></div>
-        <div class="col-2">
+        <div class="col-2 d-flex">
           <button (click)="openImport()" class="btn btn-sm btn-outline-success">
-            <i class="fa-solid fa-file-import"></i>
-            <span  class="ms-1">Importa studenti</span>
+          <i class="fa-solid fa-file-import"></i>
+          <span  class="ms-1">Importa studenti</span>
+          </button>
+        </div>
+        <div class="col-6 d-flex justify-content-evenly">
+          <button (click)="openBundleAssign()" class="btn btn-sm btn-outline-primary">
+            <i class="fa-solid fa-boxes-packing"></i>
+            <span  class="ms-1">Assegna Bundle</span>
+          </button>
+          <button (click)="openPcAssign()" class="btn btn-sm btn-outline-primary">
+            <i class="fa-solid fa-laptop"></i>
+            <span  class="ms-1">Assegna Pc</span>
+          </button>
+          <button (click)="openAccessoryAssign()" class="btn btn-sm btn-outline-primary">
+            <i class="fa-solid fa-computer-mouse"></i>
+            <span  class="ms-1">Assegna Accessori</span>
           </button>
         </div>
       </div>
@@ -41,7 +54,7 @@
           </thead>
           <tbody>
             @for (s of displayStudents; track $index) {
-            <tr>
+            <tr (click)="selectStudent(s)">
               <td>{{ s.schoolIdentifierId }}</td>
               <td>{{ s.course.shortName }}</td>
               <td>{{ s.name }}</td>

@@ -5,7 +5,7 @@ import {
   HttpParamsOptions,
 }from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PCModelStock } from '../models/pcmodelstocks'; // Assicurati di importare il modello corretto per i corsi
+import { PCModelStock } from '../models/pcmodel-stock'; // Assicurati di importare il modello corretto per i corsi
 
 @Injectable({
   providedIn: 'root',

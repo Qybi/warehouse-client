@@ -1,0 +1,14 @@
+<div class="container mt-4 d-grid w-100 justify-content-center">
+    <form method="post" class="form p-2 shadow rounded-4 ">
+        <h2 class="form-title p-4 text-center">Login</h2>
+        <div class="form-group m-4 d-grid">
+            <label for="usernameInput">Username</label>
+            <input type="text" name="usernameInput" id="usernameInput" [(ngModel)]="username" placeholder="Username" class="mt-2 rounded">
+        </div>
+        <div class="form-group m-4 d-grid">
+            <label for="passwordInut">Password</label>
+            <input type="password" name="passwordInput" id="passwordInput" [(ngModel)]="password" placeholder="Password" class="mt-2 rounded">
+        </div>
+        <button type="submit" class="btn btn-primary m-4 w-25">LogIn</button>
+    </form>
+</div>
