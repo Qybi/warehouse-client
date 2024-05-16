@@ -7,13 +7,18 @@
         </div>
         <div class="form-group mt-5 d-grid w-25">
             <label for="seriale">Seriale Pc</label>
-            <input type="text" name="serial" id="seriale" placeholder="Seriale pc" class="p-1" [(ngModel)]="serial">
-            <button (click)="checkSerialPC()">Controlla Seriale</button>
+            <div class="form-group d-flex">
+                <input type="text" name="serial" id="seriale" placeholder="Seriale pc" class="p-1" [(ngModel)]="serial">
+                @if (serialOk) {
+                    <span><i class="fa-solid fa-check"></i></span>
+                }
+            </div>
+            <button (click)="checkSerialPC()" class="btn btn-primary mt-4">Controlla Seriale</button>
         </div>
         <div class="form-group mt-5 d-grid w-25">
             <label for="cespite">Cespite Pc</label>
             <input type="text" name="cespite" id="cespite" placeholder="Cespite pc" class="p-1" [(ngModel)]="cespite">
-            <button (click)="checkCespitePc()">Controlla Cespite</button>
+            <button (click)="checkCespitePc()" class="btn btn-primary mt-4">Controlla Cespite</button>
         </div>
         <div class="form-group mt-4">
             <label for="assignmentDate" class="">Data Assegnamento</label>

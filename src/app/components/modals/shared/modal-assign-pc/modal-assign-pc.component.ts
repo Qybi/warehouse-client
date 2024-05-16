@@ -17,6 +17,8 @@ export class ModalAssignPcComponent {
 
   serial: string = "";
   cespite: string = "";
+  serialOk:boolean = false;
+  // cespiteOk: boolean = false;
 
   student:Student = {} as Student
   pc:Pc = {} as Pc
@@ -37,11 +39,16 @@ export class ModalAssignPcComponent {
   }
 
   checkSerialPC(){
-    this.pcservice.checkSerial(this.serial);
+    this.pcservice.checkSerial(this.serial).subscribe({
+      next: (res) => {
+        if(!res) return;
+        this.serialOk = true;
+      }
+    });
   }
 
   checkCespitePc(){
-    this.pcservice.checkCespite(this.cespite);
+    // this.pcservice.checkCespite(this.cespite)
   }
 }
 
