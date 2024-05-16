@@ -4,16 +4,19 @@ import { Student } from '../../../../models/student';
 import { PCAssignmentService } from '../../../../services/pcassignment.service';
 import { PCService } from '../../../../services/pc.service';
 import { Pc } from '../../../../models/pc';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-modal-assign-pc',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './modal-assign-pc.component.html',
   styleUrl: './modal-assign-pc.component.scss'
 })
 export class ModalAssignPcComponent {
 
+  serial: string = "";
+  cespite: string = "";
 
   student:Student = {} as Student
   pc:Pc = {} as Pc
@@ -25,9 +28,21 @@ export class ModalAssignPcComponent {
 
   initModal(student: Student) {
     this.student = student;
-    
+    this.setFocus();
   }
 
+  setFocus(){
+    var seriale = document.getElementById('seriale');
+    seriale?.focus();
+  }
+
+  checkSerialPC(){
+    this.pcservice.checkSerial(this.serial);
+  }
+
+  checkCespitePc(){
+    this.pcservice.checkCespite(this.cespite);
+  }
 }
 
 

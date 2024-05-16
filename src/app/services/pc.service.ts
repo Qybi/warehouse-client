@@ -46,4 +46,12 @@ export class PCService {
   deletePc(id: number): Observable<any> {
     return this.http.delete(`${this._baseURL}/delete?id=${id}`);
   }
+
+  checkSerial(serial: string): Observable<boolean>{
+    return this.http.get<boolean>(`${this._baseURL}/checkSerialPc?serial=${serial}`); //ritorna true se il serial è già presente nel DB
+  }
+
+  checkCespite(cespite: string): Observable<boolean>{
+    return this.http.get<boolean>(`${this._baseURL}/checkCespitePc?cespite=${cespite}`); //ritorna true se il cespite è più presente nel DB
+  }
 }

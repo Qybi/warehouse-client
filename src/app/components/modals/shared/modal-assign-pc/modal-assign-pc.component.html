@@ -1,32 +1,30 @@
 <div class="container m-4">
     <button type="button" class="btn-close mb-5" aria-label="Close" (click)="activeModal.close()"></button>
     <form action="" method="post" class="d-grid border-3 w-75">
-        <h5 class="card-subtitle">Studente: {{ student.name }}</h5>
+        <h6 class="card-subtitle">Studente: {{ student.name }}</h6>
         <div class="form-group mt-2 mb-3">
-            <h5 class="card-subtitle ">Email: {{ student.emailPersonal }}</h5>
+            <h6 class="card-subtitle ">Email: {{ student.emailPersonal }}</h6>
         </div>
-        <div class="form-group mt-5">
-            <label for="exampleFormControlSelect1">Codice Pc</label>
-            <select class="form-control w-25" id="exampleFormControlSelect1">
-                <!-- @for (item of pcItems; track $index) { -->
-                <!-- <option>{{ item }}</option>
-                } -->
-            </select>
+        <div class="form-group mt-5 d-grid w-25">
+            <label for="seriale">Seriale Pc</label>
+            <input type="text" name="serial" id="seriale" placeholder="Seriale pc" class="p-1" [(ngModel)]="serial">
+            <button (click)="checkSerialPC()">Controlla Seriale</button>
+        </div>
+        <div class="form-group mt-5 d-grid w-25">
+            <label for="cespite">Cespite Pc</label>
+            <input type="text" name="cespite" id="cespite" placeholder="Cespite pc" class="p-1" [(ngModel)]="cespite">
+            <button (click)="checkCespitePc()">Controlla Cespite</button>
         </div>
         <div class="form-group mt-4">
             <label for="assignmentDate" class="">Data Assegnamento</label>
             <input type="date" name="assignmentDate" id="assignmentDate" class="m-3">
         </div>
         <div class="form-group">
-            <label for="assignmentDate" class="">Ritorno entro</label>
+            <label for="assignmentDate" class="">Ritorno Previsto</label>
             <input type="date" name="assignmentDate" id="assignmentDate" class="m-3 p-1 ">
         </div>
-        <div class="form-group">
-            <label for="isReturned">Ritornato</label>
-            <input type="checkbox" name="isReturned" id="isReturned" class="m-3">
-        </div>
         <div class="form-group mt-3 mb-3">
-            <label for="exampleFormControlTextarea1">Commento</label>
+            <label for="exampleFormControlTextarea1">Note</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
         <button type="submit" class="btn btn-sm btn-primary w-25">Invia</button>
