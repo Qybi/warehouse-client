@@ -9,12 +9,13 @@ import { ModalImportFileComponent } from '../modals/shared/modal-import-file/mod
 import { ModalAssignAccessoriesComponent } from '../modals/shared/modal-assign-accessories/modal-assign-accessories.component';
 import { ModalAssignPcComponent } from '../modals/shared/modal-assign-pc/modal-assign-pc.component';
 import { ModalAssignBundleComponent } from '../modals/shared/modal-assign-bundle/modal-assign-bundle.component';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-student-manager',
   standalone: true,
-  imports: [CommonModule, FormsModule, NgbModalModule],
+  imports: [CommonModule, FormsModule, NgbModalModule, RouterModule],
   templateUrl: './student-manager.component.html',
   styleUrl: './student-manager.component.scss',
 })
