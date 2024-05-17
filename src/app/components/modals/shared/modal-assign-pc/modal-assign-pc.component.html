@@ -34,7 +34,7 @@
                                         <input type="text" name="newSerial" id="serial" [(ngModel)]="serial">
                                     </div>
                                 </div>
-                                <button class="btn btn-primary" (click)="sendSerial()" accordion-body>Invia</button>
+                                <button class="btn btn-primary" (click)="saveSerial()" accordion-body>Invia</button>
                             </form>
                         </div>
                     </div>
@@ -49,16 +49,16 @@
 ⁄        </div>
         <div class="form-group mt-4">
             <label for="assignmentDate" class="">Data Assegnamento</label>
-            <input type="date" name="assignmentDate" id="assignmentDate" class="m-3">
+            <input type="date" name="assignmentDate" id="assignmentDate" class="m-3" [(ngModel)]="assignmentDate">
         </div>
         <div class="form-group">
             <label for="assignmentDate" class="">Ritorno Previsto</label>
-            <input type="date" name="assignmentDate" id="assignmentDate" class="m-3 p-1">
+            <input type="date" name="returnDate" id="returnDate" class="m-3 p-1" [(ngModel)]="returnDate">
         </div>
         <div class="form-group mt-3 mb-3">
             <label for="exampleFormControlTextarea1">Note</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="notes"></textarea>
         </div>
-        <button type="submit" class="btn btn-sm btn-primary w-25">Invia</button>
+        <button type="submit" (click)="assignPc()" class="btn btn-sm btn-primary w-25">Invia</button>
     </form>
 </div>

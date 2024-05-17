@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { TicketService } from '../../../../services/ticket.service';
 import { PCModelStockService } from '../../../../services/pcmodel-stock.service';
 import { PCModelStock } from '../../../../models/pcmodel-stock';
+import { PCAssignment } from '../../../../models/pcassignment';
+import { Timestamp } from 'rxjs';
 
 @Component({
   selector: 'app-modal-assign-pc',
@@ -21,11 +23,16 @@ export class ModalAssignPcComponent {
   serial: string = "";
   cespite: string = "";
   serialOk: boolean = false;
+  notes: string = "";
 
   selectedOption: string = "";
 
   pcModelStocks: PCModelStock[] = [];
   displayStock: PCModelStock[] = [];
+
+  assignmentDate: string = "";
+  returnDate: string = ""
+
 
   //se il valore è 0 il check non è stato effettuate, se è 1 il valore è presente, se è -1 non è presente
   modalValue: number = 0;
@@ -33,13 +40,15 @@ export class ModalAssignPcComponent {
 
   student: Student = {} as Student
   pc: Pc = {} as Pc
+  pcAssignment: PCAssignment = {} as PCAssignment
 
   private modalService = inject(NgbModal);
 
   constructor(
     public activeModal: NgbActiveModal,
     private pcService: PCService,
-    private pcModelStockService: PCModelStockService
+    private pcModelStockService: PCModelStockService,
+    private pcAssignmentService: PCAssignmentService
   ) { }
 
   initModal(student: Student) {
@@ -69,26 +78,57 @@ export class ModalAssignPcComponent {
     });
   }
 
-  sendSerial() {
+  saveSerial() {
     // Extract the stock ID from the selected option
     const selectValue = this.selectedOption.split(' ');
     const stockId = +selectValue[0];
-  
+
     // Create a new PC object with the updated properties
-    const newPc: Pc =  {
+    this.pc = {
       stockId,
       serial: this.serial,
       isMuletto: false,
       useCycle: 0
     } as Pc;
-  
+
     // Send the new PC object to the backend
-    this.pcService.insertSerial(newPc).subscribe(res => {
-      console.log("Serial inserted successfully");
-    });
 
     this.modalValue = 0;
   }
+
+  assignPc() {
+
+   
+
+    this.pc.propertySticker = this.cespite;
+    this.pc.notes = this.notes;
+    this.pcAssignment.assignmentDate = this.assignmentDate;
+    this.pcAssignment.isReturned = false;
+    this.pcAssignment.forecastedReturnDate = this.returnDate;
+    this.pcAssignment.studentId = this.student.id;
+
+    let pcIdValue: number;
+    // DIO PORCO NON VA UN CAZZO NON PASSA L'ID DEL PC MADONNA LUDRA IMPESTATA
+    // this.pcService.getPcIdFromSerial(this.serial).subscribe((pcId: Pc) => {
+    //   pcIdValue = pcId.id
+    //   this.pcAssignment.pcId = pcIdValue;
+    // });
+
+
+    if (!this.serialOk) {
+      this.pcService.insertSerial(this.pc).subscribe(res => {
+        console.log("Serial inserted successfully");
+      });
+    }
+    this.pcService.updatePc(this.pc).subscribe(res => {
+      console.log("Pc update successfully");
+    });
+    this.pcAssignmentService.createPCAssignment(this.pcAssignment).subscribe(res => {
+      console.log("Assignment Completed");
+    });
+  }
+
+
 
 
 }

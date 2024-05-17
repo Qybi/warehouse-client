@@ -15,7 +15,7 @@ export class PCAssignmentService {  //servizio usato per comunicare con l'API de
     'Content-Type': 'application/json',
   });
   
-  private _baseURL:string = '/pcassignment';  // URL del backend Blazor
+  private _baseURL:string = '/pcAssignment';  // URL del backend Blazor
   
   constructor(private http: HttpClient) {}
   
@@ -45,4 +45,6 @@ export class PCAssignmentService {  //servizio usato per comunicare con l'API de
   deletePCAssignment(id: number): Observable<any> {
     return this.http.delete(`${this._baseURL}/delete?id=${id}`);
   }
+
+
 }
