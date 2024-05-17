@@ -1,0 +1,16 @@
+.modal-wraper{
+    z-index: 1000;
+    backdrop-filter: #44444450;
+    background-color: yellow;
+    place-items: center;
+    display: grid;
+    align-items: center;
+}
+
+.modale{
+    width: 20vw;
+    height: 20vh;
+    position: absolute;
+    align-self: center;
+    background-color: yellow;
+}
