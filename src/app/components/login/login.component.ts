@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { LoginResponse } from '../../models/auth/login-response';
 
 @Component({
   selector: 'app-login',
@@ -20,11 +21,15 @@ export class LoginComponent {
   ) { }
   
   login() {
-    if (this.authService.authenticateUser(this.username, this.password)) {
-      console.log('User authenticated');
-      this.router.navigateByUrl('/home');
-    } else {
-      console.log('User not authenticated');
-    }
+    this.authService.authenticateUser(this.username, this.password).subscribe((loginResp: LoginResponse) => {
+      console.log("loin resp", loginResp);
+      if (!loginResp.isSuccessful) return;
+      if (loginResp.credentials.roles.map(x => x.toLowerCase()).includes('admin')) {
+        this.router.navigateByUrl('/home');
+      } else if (loginResp.credentials.roles.includes('student')) {
+        this.router.navigate(['/student', loginResp.credentials.studentId]);
+      }
+    });
+    
   }
 }

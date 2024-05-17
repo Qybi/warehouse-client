@@ -12,7 +12,6 @@ import { ArchivesComponent } from './components/archives/archives.component';
 import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
-  { path: 'login', pathMatch: 'full', component: LoginComponent },
   createWrapperChildren([
     { path: 'home', pathMatch: 'full', component: HomeComponent },
     { path: 'students', pathMatch: 'full', component: StudentManagerComponent },
@@ -25,5 +24,6 @@ export const routes: Routes = [
     },
     { path: 'archives', pathMatch: 'full', component: ArchivesComponent },
   ]),
+  { path: 'login', pathMatch: 'full', component: LoginComponent },
   { path: '**', redirectTo: 'home'},
 ];
