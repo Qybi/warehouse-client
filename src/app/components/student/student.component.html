@@ -1,8 +1,24 @@
 <div class="container-fluid m-3">
   <!--Title-->
+  <div class="col-6 d-flex justify-content-evenly">
+    <button (click)="openBundleAssign()" class="btn btn-sm btn-outline-primary">
+      <i class="fa-solid fa-boxes-packing"></i>
+      <span  class="ms-1">Assegna Bundle</span>
+    </button>
+    <button (click)="openPcAssign()" class="btn btn-sm btn-outline-primary">
+      <i class="fa-solid fa-laptop"></i>
+      <span  class="ms-1">Assegna Pc</span>
+    </button>
+    <button (click)="openAccessoryAssign()" class="btn btn-sm btn-outline-primary">
+      <i class="fa-solid fa-computer-mouse"></i>
+      <span  class="ms-1">Assegna Accessori</span>
+    </button>
+  </div>
+  
   <div class="mt-3">
     <h3>Dati studente:</h3>
   </div>
+
 
   <!--Name, Surname, Course, DoB -->
   <div class="row mt-5">

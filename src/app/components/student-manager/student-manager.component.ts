@@ -73,7 +73,7 @@ export class StudentManagerComponent {
       console.log(result);
     });
   }
-
+/*
   openBundleAssign() {
     const m = this.modalService.open(ModalAssignBundleComponent, {
       size: 'lg',
@@ -112,7 +112,7 @@ export class StudentManagerComponent {
       this.selectedStudent
     );
   }
-
+*/
   selectStudent(student: Student) {
     this.selectedStudent = student;
   }
