@@ -9,7 +9,7 @@ export class FileUploaderService {
   constructor(private http: HttpClient) {}
 
   postFile(fileToUpload: File, filetype: string): Observable<boolean> {
-    const endpoint = 'https://localhost:7085/api/v1/student/import';
+    const endpoint = '/student/import';
     const formData: FormData = new FormData();
     formData.append('fileKey', fileToUpload, fileToUpload.name);
     return this.http

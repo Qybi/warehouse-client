@@ -16,7 +16,7 @@ export class AccessoryService {
     'Content-Type': 'application/json',
   });
   
-  private _baseURL:string = 'https://localhost:80/api/accessories';  // URL del backend Blazor
+  private _baseURL:string = '/accessories';  // URL del backend Blazor
   
   constructor(private http: HttpClient) {}
 

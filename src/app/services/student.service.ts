@@ -12,24 +12,22 @@ export class StudentService {
     'Content-Type': 'application/json',
   });
 
-  _baseUrl = 'https://localhost:7085/api/v1';
-
   constructor(private http: HttpClient) { }
 
   getStudents(): Observable<Student[]> {
-    return this.http.get<Student[]>(`${this._baseUrl}/students`);
+    return this.http.get<Student[]>(`/students`);
   }
 
   getStudent(id: number): Observable<StudentView> {
-    return this.http.get<StudentView>(`${this._baseUrl}/students/${id}`);
+    return this.http.get<StudentView>(`/students/${id}`);
   }
 
   getStudentDetails(id: number): Observable<StudentView> {
-    return this.http.get<StudentView>(`${this._baseUrl}/students/details/${id}`);
+    return this.http.get<StudentView>(`/students/details/${id}`);
   }
 
   postStudentJson(studentJson: string): Observable<boolean> {
-    return this.http.post<boolean>(`${this._baseUrl}/jsonImport`, studentJson, { headers: this.httpHeaders });
+    return this.http.post<boolean>(`/jsonImport`, studentJson, { headers: this.httpHeaders });
   }
 
 }

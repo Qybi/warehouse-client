@@ -15,7 +15,7 @@ export class TicketService {  //servizio usato per comunicare con l'API del back
     'Content-Type': 'application/json',
   });
   
-  private _baseURL:string = 'https://localhost:80/api/tickets';  // URL del backend Blazor
+  private _baseURL:string = '/tickets';  // URL del backend Blazor
   
   constructor(private http: HttpClient) {}
   

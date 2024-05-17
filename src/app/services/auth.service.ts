@@ -28,7 +28,7 @@ export class AuthService {
     password: string
   ): Observable<LoginResponse> {
     return this.http
-      .post<LoginResponse>('https://localhost:7085/api/v1/login', {
+      .post<LoginResponse>('/login', {
         username,
         password,
       })

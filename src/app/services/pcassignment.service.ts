@@ -15,7 +15,7 @@ export class PCAssignmentService {  //servizio usato per comunicare con l'API de
     'Content-Type': 'application/json',
   });
   
-  private _baseURL:string = 'https://localhost:80/api/courses';  // URL del backend Blazor
+  private _baseURL:string = '/pcassignment';  // URL del backend Blazor
   
   constructor(private http: HttpClient) {}
   

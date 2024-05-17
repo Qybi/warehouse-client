@@ -15,7 +15,7 @@ export class CourseService {  //servizio usato per comunicare con l'API del back
     'Content-Type': 'application/json',
   });
   
-  private _baseURL:string = 'https://localhost:80/api/courses';  // URL del backend Blazor
+  private _baseURL:string = '/courses';
   
   constructor(private http: HttpClient) {}
   

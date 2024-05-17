@@ -16,7 +16,7 @@ export class PCService {
     'Content-Type': 'application/json',
   });
   
-  private _baseURL:string = 'https://localhost:80/api/pcs';  // URL del backend Blazor
+  private _baseURL:string = '/pcs';  // URL del backend Blazor
   
   constructor(private http: HttpClient) {}
 
