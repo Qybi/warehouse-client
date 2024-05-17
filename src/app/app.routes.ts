@@ -10,6 +10,7 @@ import { TicketManagerComponent } from './components/ticket-manager/ticket-manag
 import { TicketComponent } from './components/ticket/ticket.component';
 // import { ArchivesComponent } from './components/archives/archives.component';
 import { LoginComponent } from './components/login/login.component';
+import { CourseManagerComponent } from './components/administration/course-manager/course-manager.component';
 
 export const routes: Routes = [
   createWrapperChildren([
@@ -20,6 +21,7 @@ export const routes: Routes = [
     { path: 'accessories', pathMatch: 'full', component: AccessoriesManagerComponent },
     { path: 'tickets', pathMatch: 'full', component: TicketManagerComponent },
     { path: 'tickets/:id', pathMatch: 'full', component: TicketComponent },
+    { path: 'courses', pathMatch: 'full', component: CourseManagerComponent }
   ]),
   { path: 'login', pathMatch: 'full', component: LoginComponent },
   { path: '**', redirectTo: 'students'},

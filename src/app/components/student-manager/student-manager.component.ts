@@ -11,7 +11,6 @@ import { ModalAssignPcComponent } from '../modals/shared/modal-assign-pc/modal-a
 import { ModalAssignBundleComponent } from '../modals/shared/modal-assign-bundle/modal-assign-bundle.component';
 import { RouterModule } from '@angular/router';
 
-
 @Component({
   selector: 'app-student-manager',
   standalone: true,
@@ -22,7 +21,7 @@ import { RouterModule } from '@angular/router';
 export class StudentManagerComponent {
   displayStudents: Student[] = [];
   students: Student[] = [];
-  selectedStudent: Student = {} as Student
+  selectedStudent: Student = {} as Student;
   search: string = '';
 
   constructor(
@@ -54,17 +53,20 @@ export class StudentManagerComponent {
           student.surname.toLowerCase() +
           ' ' +
           student.name.toLowerCase()
-        ).includes(this.search.toLowerCase())
+        ).includes(this.search.toLowerCase()) ||
+        student.schoolIdentifierId
+          .toLowerCase()
+          .includes(this.search.toLowerCase())
       );
     });
   }
 
   openImport() {
     const m = this.modalService.open(ModalImportFileComponent, {
-      size: 'lg', 
+      size: 'lg',
       backdrop: 'static',
       animation: true,
-      keyboard: true
+      keyboard: true,
     });
 
     m.result.then((result) => {
@@ -72,37 +74,43 @@ export class StudentManagerComponent {
     });
   }
 
-  openBundleAssign(){
+  openBundleAssign() {
     const m = this.modalService.open(ModalAssignBundleComponent, {
-      size: 'lg', 
+      size: 'lg',
       backdrop: 'static',
       animation: true,
-      keyboard: true
+      keyboard: true,
     });
 
-    (m.componentInstance as ModalAssignBundleComponent).initModal(this.selectedStudent)
+    (m.componentInstance as ModalAssignBundleComponent).initModal(
+      this.selectedStudent
+    );
   }
 
-  openPcAssign(){
+  openPcAssign() {
     const m = this.modalService.open(ModalAssignPcComponent, {
-      size: 'lg', 
+      size: 'lg',
       backdrop: 'static',
       animation: true,
-      keyboard: true
+      keyboard: true,
     });
 
-    (m.componentInstance as ModalAssignPcComponent).initModal(this.selectedStudent)
+    (m.componentInstance as ModalAssignPcComponent).initModal(
+      this.selectedStudent
+    );
   }
 
-  openAccessoryAssign(){
+  openAccessoryAssign() {
     const m = this.modalService.open(ModalAssignAccessoriesComponent, {
-      size: 'lg', 
+      size: 'lg',
       backdrop: 'static',
       animation: true,
-      keyboard: true
+      keyboard: true,
     });
 
-    (m.componentInstance as ModalAssignPcComponent).initModal(this.selectedStudent)
+    (m.componentInstance as ModalAssignPcComponent).initModal(
+      this.selectedStudent
+    );
   }
 
   selectStudent(student: Student) {

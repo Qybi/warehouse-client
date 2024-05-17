@@ -15,7 +15,7 @@ export class CourseService {  //servizio usato per comunicare con l'API del back
     'Content-Type': 'application/json',
   });
   
-  private _baseURL:string = '/courses';
+  private _baseURL:string = '/course';
   
   constructor(private http: HttpClient) {}
   
@@ -27,7 +27,7 @@ export class CourseService {  //servizio usato per comunicare con l'API del back
   
   //funzione che ritorna i dettagli di un singolo corso in base al suo ID
   getCourseDetails(id: number): Observable<Course> {
-    const url = `${this._baseURL}/details/${id}`;
+    const url = `${this._baseURL}/${id}`;
     return this.http.get<Course>(url);
   }
   
@@ -38,7 +38,7 @@ export class CourseService {  //servizio usato per comunicare con l'API del back
   
   //funzione per aggiornare un corso esistente
   updateCourse(course: Course): Observable<Course> {
-    return this.http.put<Course>(`${this._baseURL}/update?id=${course.id}`, course, { headers: this.httpHeaders });
+    return this.http.put<Course>(`${this._baseURL}/update`, course, { headers: this.httpHeaders });
   }
   
   //funzione per eliminare un corso in base al suo ID
