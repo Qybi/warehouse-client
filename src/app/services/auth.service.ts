@@ -13,10 +13,13 @@ export class AuthService {
   });
   private credentials: Credentials = {} as Credentials;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.isAuthenticated = !!localStorage.getItem('token');
+    this.credentials.token = localStorage.getItem('token') || '';
+  }
 
   isUserAuthenticated() {
-    return this.isAuthenticated || localStorage.getItem('token') !== null;
+    return this.isAuthenticated;
   }
 
   getToken() {

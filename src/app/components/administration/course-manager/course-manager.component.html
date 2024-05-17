@@ -28,12 +28,12 @@
                 <td>{{ c.dateStart | date: "dd/MM/yyyy" }}</td>
                 <td>{{ c.dateEnd | date: "dd/MM/yyyy" }}</td>
                 <td>
-                  <a class="btn btn-sm btn-outline-primary" (click)="openEditModal(c)">
+                  <button class="btn btn-sm btn-outline-primary me-2" (click)="openEditModal(c)">
                     <i class="fa-solid fa-pencil"></i>
-                  </a>
-                  <a class="btn btn-sm btn-outline-danger ml-1" (click)="deleteCourse(c)">
-                    <i class="fa-solid fa-folder-open"></i>
-                  </a>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" (click)="deleteCourse(c)">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
                 </td>
               </tr>
               }

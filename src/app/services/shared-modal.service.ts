@@ -8,8 +8,7 @@ import { ModalConfirmComponent } from '../components/modals/shared/modal-confirm
 export class SharedModalService {
   constructor(private modalService: NgbModal) {}
 
-  openConfirm(title: string, message: string): boolean {
-    let res: boolean = false;
+  async openConfirm(title: string, message: string): Promise<boolean> {
     const m = this.modalService.open(ModalConfirmComponent, {
       size: 'sm',
       backdrop: 'static',
@@ -17,7 +16,6 @@ export class SharedModalService {
       animation: true,
     });
     (m.componentInstance as ModalConfirmComponent).initModal(title, message);
-    m.result.then((skrrt: boolean) => res = skrrt);
-    return res;
+    return await m.result;
   }
 }

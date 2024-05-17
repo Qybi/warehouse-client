@@ -1,4 +1,5 @@
 import { PCModelStock } from "./pcmodel-stock";
+import { Student } from "./student";
 
 export interface Pc {
   id: number;
@@ -11,4 +12,5 @@ export interface Pc {
   notes: string;
 
   model: PCModelStock;
+  student?: Student;
 }

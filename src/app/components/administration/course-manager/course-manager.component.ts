@@ -24,7 +24,13 @@ export class CourseManagerComponent implements OnInit {
 
   ngOnInit(): void {
     this.courseService.getCourses().subscribe((courses: Course[]) => {
+      // console.log(courses);
       this.courses = courses;
+      for (let course of courses) {
+        const sd = new Date(course.dateStart);
+        const ed = new Date(course.dateEnd);
+        if (sd > ed) course.dateEnd = '';
+      }
     });
   }
 
@@ -49,15 +55,22 @@ export class CourseManagerComponent implements OnInit {
       animation: true,
     });
     (m.componentInstance as ModalCourseComponent).initEdit(course.id, true);
+    m.result.then((course: Course) => {
+      if (!course) return;
+      this.courses = this.courses.map((c: Course) =>
+        c.id === course.id ? course : c
+      );
+    });
   }
 
-  deleteCourse(course: Course): void {
-    if (
-      this.sharedModalService.openConfirm(
-        'Cancella corso',
-        'Sei sicuro di voler cancellare il corso?'
-      )
-    ) {
+  async deleteCourse(course: Course) {
+    const res = await this.sharedModalService.openConfirm(
+      'Cancella corso',
+      'Sei sicuro di voler cancellare il corso?'
+    );
+
+    if (res) {
+      console.log('DELETING', course);
       this.courseService.deleteCourse(course.id).subscribe(() => {
         this.courses = this.courses.filter((c: Course) => c.id !== course.id);
       });
