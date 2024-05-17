@@ -1,7 +1,7 @@
 <div class="container m-4">
     <button type="button" class="btn-close mb-5" aria-label="Close" (click)="activeModal.close()"></button>
     <form action="" method="post" class="d-grid border-3 w-75">
-        <h6 class="card-subtitle">Studente: {{ student.name }}</h6>
+        <h6 class="card-subtitle">Studente: {{ student.name }} {{ student.surname }}</h6>
         <div class="form-group mt-2 mb-3">
             <h6 class="card-subtitle ">Email: {{ student.emailPersonal }}</h6>
         </div>
@@ -9,8 +9,36 @@
             <label for="seriale">Seriale Pc</label>
             <div class="form-group d-flex">
                 <input type="text" name="serial" id="seriale" placeholder="Seriale pc" class="p-1" [(ngModel)]="serial">
-                @if (serialOk) {
-                    <span><i class="fa-solid fa-check"></i></span>
+                @if (modalValue == 1) {
+                <span class="m-2 text-success"><i class="fa-solid fa-check"></i></span>
+                }
+
+                @else if (modalValue == -1) {
+                <!-- genera modale -->
+                <span class="m-2 text-danger"><i class="fa-solid fa-xmark"></i></span>
+                <div class="form-group d-grid">
+                    <div class="modal-wrapper">
+                        <div class="modale">
+                            <form>
+                                <div class="mb-3">
+                                    <div class="form-group d-grid">
+                                        <label for="stockSerial">Seleziona Stock</label>
+                                        <select name="stockSelection" id="stockSelection" class="w-50" [(ngModel)]="selectedOption">
+                                            @for (stock of displayStock; track $index) {
+                                            <option> {{ stock.id }} - {{ stock.brand }} </option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <label for="dateOfBirth">Inserisci nuovo Seriale</label>
+                                    <div class="input-group">
+                                        <input type="text" name="newSerial" id="serial" [(ngModel)]="serial">
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary" (click)="sendSerial()" accordion-body>Invia</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 }
             </div>
             <button (click)="checkSerialPC()" class="btn btn-primary mt-4">Controlla Seriale</button>
@@ -26,7 +54,7 @@
         </div>
         <div class="form-group">
             <label for="assignmentDate" class="">Ritorno Previsto</label>
-            <input type="date" name="assignmentDate" id="assignmentDate" class="m-3 p-1 ">
+            <input type="date" name="assignmentDate" id="assignmentDate" class="m-3 p-1">
         </div>
         <div class="form-group mt-3 mb-3">
             <label for="exampleFormControlTextarea1">Note</label>

@@ -16,7 +16,7 @@ export class PCService {
     'Content-Type': 'application/json',
   });
   
-  private _baseURL:string = '/pcs';  // URL del backend Blazor
+  private _baseURL:string = '/pc';  // URL del backend Blazor
   
   constructor(private http: HttpClient) {}
 
@@ -51,7 +51,8 @@ export class PCService {
     return this.http.get<boolean>(`${this._baseURL}/checkSerialPc?serial=${serial}`); //ritorna true se il serial è già presente nel DB
   }
 
-  checkCespite(cespite: string): Observable<boolean>{
-    return this.http.get<boolean>(`${this._baseURL}/checkCespitePc?cespite=${cespite}`); //ritorna true se il cespite è più presente nel DB
+  insertSerial(pc: Pc): Observable<Pc>{
+    return this.http.post<Pc>(`${this._baseURL}/insertSerial`, pc, { headers: this.httpHeaders });
   }
+
 }

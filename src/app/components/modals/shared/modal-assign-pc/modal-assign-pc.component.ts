@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, inject } from '@angular/core';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Student } from '../../../../models/student';
 import { PCAssignmentService } from '../../../../services/pcassignment.service';
 import { PCService } from '../../../../services/pc.service';
 import { Pc } from '../../../../models/pc';
 import { FormsModule } from '@angular/forms';
+import { TicketService } from '../../../../services/ticket.service';
+import { PCModelStockService } from '../../../../services/pcmodel-stock.service';
+import { PCModelStock } from '../../../../models/pcmodel-stock';
 
 @Component({
   selector: 'app-modal-assign-pc',
@@ -18,19 +21,34 @@ export class ModalAssignPcComponent {
   serial: string = "";
   cespite: string = "";
   serialOk:boolean = false;
+
+  selectedOption:string = "";
+
+  pcModelStocks: PCModelStock[] = [];
+  displayStock: PCModelStock[] = [];
+
+  //se il valore è 0 il check non è stato effettuate, se è 1 il valore è presente, se è -1 non è presente
+  modalValue: number = 0;
   // cespiteOk: boolean = false;
 
   student:Student = {} as Student
   pc:Pc = {} as Pc
 
+  private modalService = inject(NgbModal);
+
   constructor(
     public activeModal: NgbActiveModal,
-    private pcservice: PCService
+    private pcService: PCService,
+    private pcModelStockService: PCModelStockService
   ){}
 
   initModal(student: Student) {
     this.student = student;
     this.setFocus();
+    this.pcModelStockService.getPCModelStocks().subscribe((pcModelStocks) => {
+      this.pcModelStocks = pcModelStocks;
+      this.displayStock = this.pcModelStocks.map((x) => x);
+    });
   }
 
   setFocus(){
@@ -39,10 +57,14 @@ export class ModalAssignPcComponent {
   }
 
   checkSerialPC(){
-    this.pcservice.checkSerial(this.serial).subscribe({
-      next: (res) => {
-        if(!res) return;
+    this.pcService.checkSerial(this.serial).subscribe({
+      next: (res: any) => {
+        if(!res){
+          this.modalValue = -1;
+          return
+        };
         this.serialOk = true;
+        this.modalValue = 1;
       }
     });
   }
@@ -50,6 +72,21 @@ export class ModalAssignPcComponent {
   checkCespitePc(){
     // this.pcservice.checkCespite(this.cespite)
   }
+
+  sendSerial(){
+    // dobbiamo creare l'oggetto con un nuovo seriale
+    var pc:Pc = {} as Pc;
+ 
+
+    var selectValue = this.selectedOption.split(' ');
+    pc.stockId = +selectValue[0];
+    pc.serial = this.serial;
+    pc.isMuletto = false;
+    pc.useCycle = 0;
+    // ora questa variabile pc dobbiamo passarla al backend
+
+    this.pcService.insertSerial(pc);
+  }
+
+  
 }
-
-

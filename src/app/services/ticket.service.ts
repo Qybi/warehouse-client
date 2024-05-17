@@ -57,4 +57,9 @@ export class TicketService {  //servizio usato per comunicare con l'API del back
   setStatusClosed(id: number): Observable<Ticket>{
     return this.http.get<Ticket>(`${this._baseURL}/closeTicket?id=${id}`);
   }
+
+
+  checkCespite(cespite: string): Observable<boolean>{
+    return this.http.get<boolean>(`${this._baseURL}/checkCespitePc?cespite=${cespite}`); //ritorna true se il cespite è più presente nel DB
+  }
 }
