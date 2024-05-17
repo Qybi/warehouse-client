@@ -25,7 +25,7 @@ export class LoginComponent {
       console.log("loin resp", loginResp);
       if (!loginResp.isSuccessful) return;
       if (loginResp.credentials.roles.map(x => x.toLowerCase()).includes('admin')) {
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/students');
       } else if (loginResp.credentials.roles.includes('student')) {
         this.router.navigate(['/student', loginResp.credentials.studentId]);
       }
