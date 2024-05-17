@@ -3,6 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FileUploaderService } from '../../../../services/file-uploader.service';
 import * as ExcelJS from 'exceljs';
 import { IndexedFieldWithPossiblyUndefined, NumericDictionary } from 'lodash';
+import { StudentService } from '../../../../services/student.service';
 
 @Component({
   selector: 'app-modal-import-file',
@@ -14,12 +15,14 @@ import { IndexedFieldWithPossiblyUndefined, NumericDictionary } from 'lodash';
 export class ModalImportFileComponent {
   title: string = '';
   message: string = '';
+  studentJson: string = '';
 
   fileToUpload: File | null = null;
 
   constructor(
     public activeModal: NgbActiveModal,
-    private fileUploaderService: FileUploaderService
+    private fileUploaderService: FileUploaderService,
+    private studentService: StudentService 
   ) {}
 
   preRender(title: string, message: string) {
@@ -74,6 +77,12 @@ export class ModalImportFileComponent {
       });
   
       console.log(JSON.stringify(jsonData, null, 2));
+      this.studentJson = JSON.stringify(jsonData, null, 2);
     });
+  }
+
+  uploadFile(studentJson: string) {
+    this.studentService.postStudentJson(studentJson);
+
   }
 }
