@@ -10,9 +10,7 @@ export const httpInterceptor: HttpInterceptorFn = (req, next) => {
   const authToken = authServ.getToken();
   // Clone the request and add the authorization header
   const authReq = req.clone({
-    setHeaders: {
-      Authorization: `Bearer ${authToken}`,
-    },
+    headers: req.headers.append('Authorization', `Bearer ${authToken}`),
     url: `https://localhost:7085/api/v1${req.url}`,
   });
 
