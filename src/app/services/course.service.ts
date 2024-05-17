@@ -27,7 +27,7 @@ export class CourseService {  //servizio usato per comunicare con l'API del back
   
   //funzione che ritorna i dettagli di un singolo corso in base al suo ID
   getCourseDetails(id: number): Observable<Course> {
-    const url = `${this._baseURL}/details?id=${id}`;
+    const url = `${this._baseURL}/details/${id}`;
     return this.http.get<Course>(url);
   }
   
