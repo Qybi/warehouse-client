@@ -20,9 +20,9 @@ export class ModalAssignPcComponent {
 
   serial: string = "";
   cespite: string = "";
-  serialOk:boolean = false;
+  serialOk: boolean = false;
 
-  selectedOption:string = "";
+  selectedOption: string = "";
 
   pcModelStocks: PCModelStock[] = [];
   displayStock: PCModelStock[] = [];
@@ -31,8 +31,8 @@ export class ModalAssignPcComponent {
   modalValue: number = 0;
   // cespiteOk: boolean = false;
 
-  student:Student = {} as Student
-  pc:Pc = {} as Pc
+  student: Student = {} as Student
+  pc: Pc = {} as Pc
 
   private modalService = inject(NgbModal);
 
@@ -40,7 +40,7 @@ export class ModalAssignPcComponent {
     public activeModal: NgbActiveModal,
     private pcService: PCService,
     private pcModelStockService: PCModelStockService
-  ){}
+  ) { }
 
   initModal(student: Student) {
     this.student = student;
@@ -51,15 +51,15 @@ export class ModalAssignPcComponent {
     });
   }
 
-  setFocus(){
+  setFocus() {
     var seriale = document.getElementById('seriale');
     seriale?.focus();
   }
 
-  checkSerialPC(){
+  checkSerialPC() {
     this.pcService.checkSerial(this.serial).subscribe({
       next: (res: any) => {
-        if(!res){
+        if (!res) {
           this.modalValue = -1;
           return
         };
@@ -69,24 +69,26 @@ export class ModalAssignPcComponent {
     });
   }
 
-  checkCespitePc(){
-    // this.pcservice.checkCespite(this.cespite)
-  }
-
-  sendSerial(){
-    // dobbiamo creare l'oggetto con un nuovo seriale
-    var pc:Pc = {} as Pc;
- 
-
-    var selectValue = this.selectedOption.split(' ');
-    pc.stockId = +selectValue[0];
-    pc.serial = this.serial;
-    pc.isMuletto = false;
-    pc.useCycle = 0;
-    // ora questa variabile pc dobbiamo passarla al backend
-
-    this.pcService.insertSerial(pc);
-  }
-
+  sendSerial() {
+    // Extract the stock ID from the selected option
+    const selectValue = this.selectedOption.split(' ');
+    const stockId = +selectValue[0];
   
+    // Create a new PC object with the updated properties
+    const newPc: Pc =  {
+      stockId,
+      serial: this.serial,
+      isMuletto: false,
+      useCycle: 0
+    } as Pc;
+  
+    // Send the new PC object to the backend
+    this.pcService.insertSerial(newPc).subscribe(res => {
+      console.log("Serial inserted successfully");
+    });
+
+    this.modalValue = 0;
+  }
+
+
 }
