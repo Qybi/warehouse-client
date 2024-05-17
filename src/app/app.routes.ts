@@ -25,5 +25,5 @@ export const routes: Routes = [
     { path: 'archives', pathMatch: 'full', component: ArchivesComponent },
   ]),
   { path: 'login', pathMatch: 'full', component: LoginComponent },
-  { path: '**', redirectTo: 'home'},
+  { path: '**', redirectTo: 'students'},
 ];
