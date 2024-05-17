@@ -13,6 +13,7 @@ export const httpInterceptor: HttpInterceptorFn = (req, next) => {
     setHeaders: {
       Authorization: `Bearer ${authToken}`,
     },
+    url: `https://localhost:7085/api/v1${req.url}`,
   });
 
   // Pass the cloned request with the updated header to the next handler
