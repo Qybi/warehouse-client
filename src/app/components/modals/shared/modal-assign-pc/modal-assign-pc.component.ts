@@ -22,6 +22,8 @@ export class ModalAssignPcComponent {
   cespite: string = "";
   serialOk:boolean = false;
 
+  selectedOption:string = "";
+
   pcModelStocks: PCModelStock[] = [];
   displayStock: PCModelStock[] = [];
 
@@ -72,11 +74,16 @@ export class ModalAssignPcComponent {
   }
 
   sendSerial(){
-    // this.pcService.
+    // dobbiamo creare l'oggetto con un nuovo seriale
+    var pc:Pc = {} as Pc;
+ 
 
+    var selectValue = this.selectedOption.split(' ');
+    pc.stockId = +selectValue[0];
+    pc.serial = this.serial;
+
+    // ora questa variabile pc dobbiamo passarla al backend
   }
 
   
 }
-
-

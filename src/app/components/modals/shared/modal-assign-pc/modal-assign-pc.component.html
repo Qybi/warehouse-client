@@ -23,11 +23,11 @@
                                 <div class="mb-3">
                                     <div class="form-group d-grid">
                                         <label for="stockSerial">Seleziona Stock</label>
-                                        <select name="stockSelection" id="stockSelection" class="w-50">
+                                        <select name="stockSelection" id="stockSelection" class="w-50" [(ngModel)]="selectedOption">
                                             @for (stock of displayStock; track $index) {
                                             <option> {{ stock.id }} - {{ stock.brand }} </option>
                                             }
-                                        </select>
+                                        </select>
                                     </div>
                                     <label for="dateOfBirth">Inserisci nuovo Seriale</label>
                                     <div class="input-group">

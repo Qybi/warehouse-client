@@ -51,4 +51,8 @@ export class PCService {
     return this.http.get<boolean>(`${this._baseURL}/checkSerialPc?serial=${serial}`); //ritorna true se il serial è già presente nel DB
   }
 
+  insertSerial(pc: Pc): Observable<Pc>{
+    return this.http.post<Pc>(`${this._baseURL}/insertSerial`, pc, { headers: this.httpHeaders });
+  }
+
 }

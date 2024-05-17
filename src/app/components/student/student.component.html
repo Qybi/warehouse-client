@@ -7,25 +7,26 @@
   <!--Name, Surname, Course, DoB -->
   <div class="row mt-5">
     <!--Name-->
-    <div class="d-flex col">
+    <div class="d-flex col-2">
       <h5 class="text-body-secondary">Nome:</h5>
       <h5 class="ms-2">{{ student.name }}</h5>
     </div>
 
     <!--Surname-->
-    <div class="d-flex col">
+    <div class="d-flex col-2">
       <h5 class="text-body-secondary">Cognome:</h5>
       <h5 class="ms-2">{{ student.surname }}</h5>
     </div>
-
+  </div>
+  <div class="row mt-5">
     <!--Course-->
-    <div class="d-flex col">
+    <div class="d-flex col-2">
       <h5 class="text-body-secondary">Course:</h5>
       <h5 class="ms-2">{{ student.course.shortName }}</h5>
     </div>
 
     <!-- Fiscal Code -->
-    <div class="d-flex col">
+    <div class="d-flex col-2">
       <h5 class="text-body-secondary">Fiscal Code:</h5>
       <h5 class="ms-2">{{ student.fiscalCode }}</h5>
     </div>
