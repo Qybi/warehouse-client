@@ -81,8 +81,11 @@ export class ModalAssignPcComponent {
     var selectValue = this.selectedOption.split(' ');
     pc.stockId = +selectValue[0];
     pc.serial = this.serial;
-
+    pc.isMuletto = false;
+    pc.useCycle = 0;
     // ora questa variabile pc dobbiamo passarla al backend
+
+    this.pcService.insertSerial(pc);
   }
 
   
