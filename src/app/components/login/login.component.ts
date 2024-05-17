@@ -22,7 +22,6 @@ export class LoginComponent {
   
   login() {
     this.authService.authenticateUser(this.username, this.password).subscribe((loginResp: LoginResponse) => {
-      console.log("loin resp", loginResp);
       if (!loginResp.isSuccessful) return;
       if (loginResp.credentials.roles.map(x => x.toLowerCase()).includes('admin')) {
         this.router.navigateByUrl('/students');
