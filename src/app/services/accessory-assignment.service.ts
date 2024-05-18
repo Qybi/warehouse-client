@@ -30,6 +30,11 @@ export class AccessoryAssignmentService {  //servizio usato per comunicare con l
     const url = `${this._baseURL}/details?id=${id}`;
     return this.http.get<AccessoriesAssignment>(url);
   }
+
+  getStudentAccessoryAssignmentDetails(studentId: number): Observable<AccessoriesAssignment[]> {
+    const url = `${this._baseURL}/student?studentId=${studentId}`;
+    return this.http.get<AccessoriesAssignment[]>(url);
+  }
   
   //funzione per creare un nuovo accessory
   createAccessoryAssignment(accessoryassignment: AccessoriesAssignment): Observable<AccessoriesAssignment> {

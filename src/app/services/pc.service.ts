@@ -56,8 +56,8 @@ export class PCService {
     return this.http.post<Pc>(`${this._baseURL}/insertSerial`, pc, { headers: this.httpHeaders });
   }
 
-  getPcIdFromSerial(serial: string): Observable<Pc>{
-    return this.http.get<Pc>(`${this._baseURL}/getPcIdFromSerial?serial=${serial}`);
+  getPcFromSerial(serial: string): Observable<Pc>{
+    return this.http.get<Pc>(`${this._baseURL}/getPcFromSerial?serial=${serial}`);
   }
 
 }

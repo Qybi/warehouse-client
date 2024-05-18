@@ -30,10 +30,15 @@ export class PCAssignmentService {  //servizio usato per comunicare con l'API de
     const url = `${this._baseURL}/details?id=${id}`;
     return this.http.get<PCAssignment>(url);
   }
+
+  getStudentPCAssignments(studentId: number): Observable<PCAssignment[]> {
+    const url = `${this._baseURL}/student?studentId=${studentId}`;
+    return this.http.get<PCAssignment[]>(url);
+  }
   
   //funzione per creare un nuovo corso
-  createPCAssignment(pcassignment: PCAssignment): Observable<PCAssignment> {
-    return this.http.post<PCAssignment>(`${this._baseURL}/create`, pcassignment, { headers: this.httpHeaders });
+  createPCAssignment(pcassignment: PCAssignment, newPc: boolean): Observable<PCAssignment> {
+    return this.http.post<PCAssignment>(`${this._baseURL}/create?isNewPC=${newPc}`, pcassignment, { headers: this.httpHeaders });
   }
   
   //funzione per aggiornare un corso esistente
