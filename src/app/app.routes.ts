@@ -11,6 +11,7 @@ import { TicketComponent } from './components/ticket/ticket.component';
 // import { ArchivesComponent } from './components/archives/archives.component';
 import { LoginComponent } from './components/login/login.component';
 import { CourseManagerComponent } from './components/administration/course-manager/course-manager.component';
+import { StocksManagerComponent } from './components/stocks-manager/stocks-manager.component';
 
 export const routes: Routes = [
   createWrapperChildren([
@@ -19,6 +20,7 @@ export const routes: Routes = [
     { path: 'students/:id', pathMatch: 'full', component: StudentComponent },
     { path: 'pcs', pathMatch: 'full', component: PcManagerComponent },
     { path: 'accessories', pathMatch: 'full', component: AccessoriesManagerComponent },
+    { path: 'stocks', pathMatch: 'full', component: StocksManagerComponent},
     { path: 'tickets', pathMatch: 'full', component: TicketManagerComponent },
     { path: 'tickets/:id', pathMatch: 'full', component: TicketComponent },
     { path: 'courses', pathMatch: 'full', component: CourseManagerComponent }
