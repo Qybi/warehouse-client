@@ -1,0 +1,32 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ title }}</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.close()"
+  ></button>
+</div>
+<div class="modal-body">
+  <div class="mb-3">
+    <label for="formFile" class="form-label">{{ message }}</label>
+    <input autocomplete=off (change)="handleFileInput($event)" (change)="onFileChange($event)" accept=".xls, .xlsx" class="form-control" type="file" id="formFile" />
+  </div>
+</div>
+<div class="modal-footer">
+  <button 
+    type="button" 
+    class="btn btn-primary"
+    (click)="uploadFile(studentJson)"
+    (click)="activeModal.close()"
+  >
+    Salva
+  </button>
+  <button
+    type="button"
+    class="btn btn-outline-dark"
+    (click)="activeModal.close()"
+  >
+    Chiudi
+  </button>
+</div>

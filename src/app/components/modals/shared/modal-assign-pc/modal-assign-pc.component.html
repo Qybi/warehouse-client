@@ -1,0 +1,66 @@
+<div class="modal-body">
+    <button type="button" class="btn-close mb-3" aria-label="Close" (click)="activeModal.close()"></button>
+    <form action="" method="post">
+        <div class="row">
+            <div class="col-12">
+                <h6 class="card-subtitle">Studente: {{ student.name }} {{ student.surname }}</h6>
+                <div class="form-group mt-2">
+                    <h6 class="card-subtitle ">Email: {{ student.emailUser }}</h6>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12">
+                <div class="form-group d-grid">
+                    <label for="seriale">Seriale Pc</label>
+                    <div class="form-group d-flex">
+                        <input autocomplete=off type="text" name="serial" id="seriale" class="p-1 form-control" [(ngModel)]="pc.serial">
+                        @if (serialOk) {
+                        <span class="m-2 text-success"><i class="fa-solid fa-check"></i></span>
+                        }
+                    </div>
+                    <button (click)="checkSerialPC()" class="btn btn-outline-primary mt-2">Controlla Seriale</button>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="form-group mt-2">
+                    <label for="cespite">Cespite Pc</label>
+                    <input autocomplete=off class="form-control" type="text" name="cespite" id="cespite" [(ngModel)]="pc.propertySticker">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="assignmentDate" class="">Data Assegnamento</label>
+                    <input autocomplete=off class="form-control" type="date" name="assignmentDate" id="assignmentDate" [(ngModel)]="pcAssignment.assignmentDate">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="assignmentDate" class="">Ritorno Previsto</label>
+                    <input autocomplete=off class="form-control" type="date" name="returnDate" id="returnDate" [(ngModel)]="pcAssignment.forecastedReturnDate">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="assignmentReason">Motivo di consegna</label>
+                    <select class="form-select" name="assignmentReason" id="assignMentReason" [(ngModel)]="selectedReason">
+                        @for (item of reasonsAssignment; track $index) {
+                        <option [ngValue]="item">{{ item.name }}</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <button type="submit" (click)="assignPc()" class="btn btn-sm btn-success w-25">Assegna</button>
+            </div>
+        </div>
+    </form>
+</div>

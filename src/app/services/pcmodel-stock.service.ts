@@ -5,7 +5,7 @@ import {
   HttpParamsOptions,
 }from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PCModelStock } from '../models/pcmodelstocks'; // Assicurati di importare il modello corretto per i corsi
+import { PCModelStock } from '../models/pcmodel-stock'; // Assicurati di importare il modello corretto per i corsi
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,7 @@ export class PCModelStockService {  //servizio usato per comunicare con l'API de
     'Content-Type': 'application/json',
   });
   
-  private _baseURL:string = 'https://localhost:80/api/courses';  // URL del backend Blazor
+  private _baseURL:string = '/pcmodelstock';  // URL del backend Blazor
   
   constructor(private http: HttpClient) {}
   

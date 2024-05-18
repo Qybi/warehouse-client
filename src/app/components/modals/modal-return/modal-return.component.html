@@ -1,0 +1,37 @@
+<div class="modal-header">
+    <h4 class="modal-title">Restituzione</h4>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-12">
+        <label for="returnDate">Data restituzione</label>
+        <input type="date" id="returnDate" name="returnDate" class="form-control" [(ngModel)]="returnDate">
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-12">
+        <label for="reasons">Motivo restituzione</label>
+        <select class="form-select" name="reasons" id="reasons" name="reasons" [(ngModel)]="selectedReason">
+            @for (r of reasons; track $index) {
+                <option [ngValue]="r">{{ r.name }}</option>
+            }
+        </select>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-outline-secondary"
+    (click)="activeModal.close()"
+  >
+    Chiudi
+  </button>
+  <button
+    type="button"
+    class="btn btn-primary"
+    (click)="close()"
+  >
+    Salva
+  </button>
+</div>

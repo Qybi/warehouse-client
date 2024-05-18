@@ -1,0 +1,30 @@
+<div class="modal-body">
+  <div class="form-group d-grid">
+    <div class="modale">
+      <form>
+        <div class="mb-3">
+          <div class="form-group d-grid">
+            <p>Attenzione! Non è stato trova in archivio un PC con il seriale inserito.</p>
+            <label for="stockSerial">Seleziona lo stock di acquisto del PC da inserire</label>
+            <select
+              name="stockSelection"
+              id="stockSelection"
+              class="form-select"
+              [(ngModel)]="selectedStock"
+            >
+              @for (stock of stocks; track $index) {
+              <option [ngValue]="stock">{{ stock.purchaseDate | date: 'yyyy' }} - {{ stock.brand }}</option>
+              }
+            </select>
+          </div>
+        </div>
+        <button
+          class="btn btn-primary"
+          (click)="activeModal.close(selectedStock.id)"
+        >
+          Invia
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

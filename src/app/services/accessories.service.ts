@@ -6,6 +6,7 @@ import {
 }from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Accessory } from '../models/accessory'; //import del modello per gli accessori
+import { AccessoryAssignment } from '../models/accessories-assignment';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class AccessoryService {
     'Content-Type': 'application/json',
   });
   
-  private _baseURL:string = 'https://localhost:80/api/accessories';  // URL del backend Blazor
+  private _baseURL:string = '/accessories';  // URL del backend Blazor
   
   constructor(private http: HttpClient) {}
 

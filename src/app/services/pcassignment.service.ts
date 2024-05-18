@@ -5,7 +5,7 @@ import {
   HttpParamsOptions,
 }from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PCAssignment } from '../models/pcassignments'; // Assicurati di importare il modello corretto per i corsi
+import { PCAssignment } from '../models/pcassignment'; // Assicurati di importare il modello corretto per i corsi
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,7 @@ export class PCAssignmentService {  //servizio usato per comunicare con l'API de
     'Content-Type': 'application/json',
   });
   
-  private _baseURL:string = 'https://localhost:80/api/courses';  // URL del backend Blazor
+  private _baseURL:string = '/pcAssignment';  // URL del backend Blazor
   
   constructor(private http: HttpClient) {}
   
@@ -30,10 +30,19 @@ export class PCAssignmentService {  //servizio usato per comunicare con l'API de
     const url = `${this._baseURL}/details?id=${id}`;
     return this.http.get<PCAssignment>(url);
   }
+
+  getStudentPCAssignments(studentId: number): Observable<PCAssignment[]> {
+    const url = `${this._baseURL}/student?studentId=${studentId}`;
+    return this.http.get<PCAssignment[]>(url);
+  }
   
   //funzione per creare un nuovo corso
-  createPCAssignment(pcassignment: PCAssignment): Observable<PCAssignment> {
-    return this.http.post<PCAssignment>(`${this._baseURL}/create`, pcassignment, { headers: this.httpHeaders });
+  createPCAssignment(pcassignment: PCAssignment, newPc: boolean): Observable<PCAssignment> {
+    return this.http.post<PCAssignment>(`${this._baseURL}/create?isNewPC=${newPc}`, pcassignment, { headers: this.httpHeaders });
+  }
+
+  returnPc(pcAssignment: PCAssignment, returnDate: string, returnReasonId: number): Observable<boolean> {
+    return this.http.get<boolean>(`${this._baseURL}/return?assignmentId=${pcAssignment.id}&returnDate=${returnDate}&returnReasonId=${returnReasonId}`);
   }
   
   //funzione per aggiornare un corso esistente
@@ -45,4 +54,6 @@ export class PCAssignmentService {  //servizio usato per comunicare con l'API de
   deletePCAssignment(id: number): Observable<any> {
     return this.http.delete(`${this._baseURL}/delete?id=${id}`);
   }
+
+
 }

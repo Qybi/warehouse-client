@@ -5,7 +5,7 @@ import {
   HttpParamsOptions,
 }from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AccessoryAssignment } from '../models/accessoryassignment'; // Assicurati di importare il modello corretto per i accessories
+import { AccessoryAssignment } from '../models/accessories-assignment'; // Assicurati di importare il modello corretto per i accessories
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,7 @@ export class AccessoryAssignmentService {  //servizio usato per comunicare con l
     'Content-Type': 'application/json',
   });
   
-  private _baseURL:string = 'https://localhost:80/api/courses';  // URL del backend Blazor
+  private _baseURL:string = '/courses';  // URL del backend Blazor
   
   constructor(private http: HttpClient) {}
   
@@ -29,6 +29,11 @@ export class AccessoryAssignmentService {  //servizio usato per comunicare con l
   getAccessoryAssignmentDetails(id: number): Observable<AccessoryAssignment> {
     const url = `${this._baseURL}/details?id=${id}`;
     return this.http.get<AccessoryAssignment>(url);
+  }
+
+  getStudentAccessoryAssignmentDetails(studentId: number): Observable<AccessoryAssignment[]> {
+    const url = `${this._baseURL}/student?studentId=${studentId}`;
+    return this.http.get<AccessoryAssignment[]>(url);
   }
   
   //funzione per creare un nuovo accessory
@@ -44,5 +49,9 @@ export class AccessoryAssignmentService {  //servizio usato per comunicare con l
   //funzione per eliminare un accessory in base al suo ID
   deleteAccessoryAssignment(id: number): Observable<any> {
     return this.http.delete(`${this._baseURL}/delete?id=${id}`);
+  }
+
+  returnAccessory(assignmentId: number, returnDate: string, returnReasonId: number): Observable<boolean> {
+    return this.http.get<boolean>(`${this._baseURL}/return?assignmentId=${assignmentId}&returnDate=${returnDate}&returnReasonId=${returnReasonId}`);
   }
 }
