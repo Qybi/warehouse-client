@@ -39,6 +39,7 @@ export class PCService {
   
   //funzione per aggiornare un pc esistente
   updatePc(pc: Pc): Observable<Pc> {
+    console.log(pc.id);
     return this.http.put<Pc>(`${this._baseURL}/update?id=${pc.id}`, pc, { headers: this.httpHeaders });
   }
   

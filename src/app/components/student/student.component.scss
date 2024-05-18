@@ -1,0 +1,29 @@
+.container-fluid{
+    width: 80vw;
+    display: grid;
+    place-items: center;
+    justify-content: space-evenly;
+}
+
+.data-wrapper{
+    width: 40vw;
+}
+
+.wrapper-anagrafica{
+    text-align: left;
+    width: 40vw;
+}
+
+.wrapper-pulsanti{
+    width: 40vw;
+}
+
+.tabella-pc{
+    width: 60vw;
+    margin: 0;
+}
+
+.tabella-acc{
+    width: 60vw;
+    justify-content: left;
+}

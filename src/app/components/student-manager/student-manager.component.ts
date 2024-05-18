@@ -113,7 +113,5 @@ export class StudentManagerComponent {
     );
   }
 */
-  selectStudent(student: Student) {
-    this.selectedStudent = student;
-  }
+
 }

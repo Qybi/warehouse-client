@@ -74,4 +74,5 @@ export class StudentComponent implements OnInit {
       this.selectedStudent
     );
   }
+
 }

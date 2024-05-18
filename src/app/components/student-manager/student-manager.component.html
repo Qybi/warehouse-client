@@ -26,22 +26,6 @@
           <span  class="ms-1">Importa studenti</span>
           </button>
         </div>
-      <!-- 
-        <div class="col-6 d-flex justify-content-evenly">
-          <button (click)="openBundleAssign()" class="btn btn-sm btn-outline-primary">
-            <i class="fa-solid fa-boxes-packing"></i>
-            <span  class="ms-1">Assegna Bundle</span>
-          </button>
-          <button (click)="openPcAssign()" class="btn btn-sm btn-outline-primary">
-            <i class="fa-solid fa-laptop"></i>
-            <span  class="ms-1">Assegna Pc</span>
-          </button>
-          <button (click)="openAccessoryAssign()" class="btn btn-sm btn-outline-primary">
-            <i class="fa-solid fa-computer-mouse"></i>
-            <span  class="ms-1">Assegna Accessori</span>
-          </button>
-        </div>
-      -->
       </div>
       <div class="row mt-2">
         <table class="table table-striped">
@@ -56,7 +40,7 @@
           </thead>
           <tbody>
             @for (s of displayStudents; track $index) {
-            <tr (click)="selectStudent(s)">
+            <tr>
               <td>{{ s.schoolIdentifierId }}</td>
               <td>{{ s.course.shortName }}</td>
               <td>{{ s.surname }}</td>

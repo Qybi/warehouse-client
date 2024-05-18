@@ -9,7 +9,7 @@ import { TicketService } from '../../../../services/ticket.service';
 import { PCModelStockService } from '../../../../services/pcmodel-stock.service';
 import { PCModelStock } from '../../../../models/pcmodel-stock';
 import { PCAssignment } from '../../../../models/pcassignment';
-import { Timestamp } from 'rxjs';
+import { Timestamp, map } from 'rxjs';
 
 @Component({
   selector: 'app-modal-assign-pc',
@@ -19,7 +19,7 @@ import { Timestamp } from 'rxjs';
   styleUrl: './modal-assign-pc.component.scss'
 })
 export class ModalAssignPcComponent {
-
+  // private idValue: number = 2;
   serial: string = "";
   cespite: string = "";
   serialOk: boolean = false;
@@ -32,6 +32,7 @@ export class ModalAssignPcComponent {
 
   assignmentDate: string = "";
   returnDate: string = ""
+
 
 
   //se il valore è 0 il check non è stato effettuate, se è 1 il valore è presente, se è -1 non è presente
@@ -48,7 +49,8 @@ export class ModalAssignPcComponent {
     public activeModal: NgbActiveModal,
     private pcService: PCService,
     private pcModelStockService: PCModelStockService,
-    private pcAssignmentService: PCAssignmentService
+    private pcAssignmentService: PCAssignmentService,
+
   ) { }
 
   initModal(student: Student) {
@@ -96,24 +98,25 @@ export class ModalAssignPcComponent {
     this.modalValue = 0;
   }
 
-  assignPc() {
+  async assignPc() {
 
-   
 
-    this.pc.propertySticker = this.cespite;
+
+    // this.pc.propertySticker = this.cespite;
     this.pc.notes = this.notes;
+    this.pc.propertySticker = this.cespite;
     this.pcAssignment.assignmentDate = this.assignmentDate;
     this.pcAssignment.isReturned = false;
     this.pcAssignment.forecastedReturnDate = this.returnDate;
     this.pcAssignment.studentId = this.student.id;
 
-    let pcIdValue: number;
-    // DIO PORCO NON VA UN CAZZO NON PASSA L'ID DEL PC MADONNA LUDRA IMPESTATA
-    // this.pcService.getPcIdFromSerial(this.serial).subscribe((pcId: Pc) => {
-    //   pcIdValue = pcId.id
-    //   this.pcAssignment.pcId = pcIdValue;
-    // });
+    // this.pcService.getPcIdFromSerial(this.serial).subscribe({
+    //   next: (res: Pc) => {
+    //     this.idValue = res.id;
+    //   }
+    // })
 
+    // this.pc.id = this.idValue;
 
     if (!this.serialOk) {
       this.pcService.insertSerial(this.pc).subscribe(res => {
@@ -123,9 +126,9 @@ export class ModalAssignPcComponent {
     this.pcService.updatePc(this.pc).subscribe(res => {
       console.log("Pc update successfully");
     });
-    this.pcAssignmentService.createPCAssignment(this.pcAssignment).subscribe(res => {
-      console.log("Assignment Completed");
-    });
+    // this.pcAssignmentService.createPCAssignment(this.pcAssignment).subscribe(res => {
+    //   console.log("Assignment Completed");
+    // });
   }
 
 

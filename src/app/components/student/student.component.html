@@ -1,64 +1,58 @@
-<div class="container-fluid m-3">
+<div class="container-fluid mt-3">
   <!--Title-->
-  <div class="col-6 d-flex justify-content-evenly">
+  <div class="col-12  d-flex justify-content-between wrapper-pulsanti">
     <button (click)="openBundleAssign()" class="btn btn-sm btn-outline-primary">
       <i class="fa-solid fa-boxes-packing"></i>
-      <span  class="ms-1">Assegna Bundle</span>
+      <span class="ms-1">Assegna Bundle</span>
     </button>
     <button (click)="openPcAssign()" class="btn btn-sm btn-outline-primary">
       <i class="fa-solid fa-laptop"></i>
-      <span  class="ms-1">Assegna Pc</span>
+      <span class="ms-1">Assegna Pc</span>
     </button>
     <button (click)="openAccessoryAssign()" class="btn btn-sm btn-outline-primary">
       <i class="fa-solid fa-computer-mouse"></i>
-      <span  class="ms-1">Assegna Accessori</span>
+      <span class="ms-1">Assegna Accessori</span>
     </button>
   </div>
-  
-  <div class="mt-3">
+
+  <div class="mt-5 wrapper-anagrafica">
     <h3>Dati studente:</h3>
   </div>
 
 
   <!--Name, Surname, Course, DoB -->
-  <div class="row mt-5">
+  <div class="col mt-5 wrapper-anagrafica">
     <!--Name-->
-    <div class="d-flex col-2">
+    <div class="d-flex col-8 m-2">
       <h5 class="text-body-secondary">Nome:</h5>
       <h5 class="ms-2">{{ student.name }}</h5>
     </div>
 
     <!--Surname-->
-    <div class="d-flex col-2">
+    <div class="d-flex col-8 m-2">
       <h5 class="text-body-secondary">Cognome:</h5>
       <h5 class="ms-2">{{ student.surname }}</h5>
     </div>
-  </div>
-  <div class="row mt-5">
     <!--Course-->
-    <div class="d-flex col-2">
+    <div class="d-flex col-8 m-2">
       <h5 class="text-body-secondary">Course:</h5>
       <h5 class="ms-2">{{ student.course.shortName }}</h5>
     </div>
 
     <!-- Fiscal Code -->
-    <div class="d-flex col-2">
+    <div class="d-flex col-8 m-2">
       <h5 class="text-body-secondary">Fiscal Code:</h5>
       <h5 class="ms-2">{{ student.fiscalCode }}</h5>
     </div>
   </div>
 
   <!-- Hidden Data -->
-  <button
-    class="btn btn-primary"
-    type="button"
-    data-bs-toggle="collapse"
-    data-bs-target="#contenutoNascosto"
-  >
+  <button class="btn btn-primary mt-4" type="button" data-bs-toggle="collapse" data-bs-target="#contenutoNascosto">
     Mostra altro
   </button>
-  <div class="collapse mt-3" id="contenutoNascosto">
-    <div class="row">
+  <div class="collapse mt-3 data-wrapper" id="contenutoNascosto">
+
+    <hr class="mb-5">
       <!-- User Email -->
       <div class="d-flex col">
         <h5 class="text-body-secondary">Email:</h5>
@@ -76,19 +70,15 @@
         <h5 class="text-body-secondary">Codice corso:</h5>
         <h5 class="ms-2">CLED</h5>
       </div>
-    </div>
 
     <!-- status -->
-    <div class="row">
       <div class="d-flex col">
         <h5 class="text-body-secondary">Status:</h5>
         <h5 class="ms-2">{{ student.status }}</h5>
       </div>
-    </div>
 
     <!-- Birth -->
     <h3 class="text-body-primary mt-5 fst-italic">Dati di nascita:</h3>
-    <div class="row mt-3">
       <!--Date of Birth-->
       <div class="d-flex col">
         <h5 class="text-body-secondary">Data di nascita:</h5>
@@ -106,11 +96,9 @@
         <h5 class="text-body-secondary">Città di nascita:</h5>
         <h5 class="ms-2">{{ student.birthCity }}</h5>
       </div>
-    </div>
 
     <!-- Residency -->
     <h3 class="text-body-primary mt-5 fst-italic">Dati residenza:</h3>
-    <div class="row mt-3">
       <!-- Country -->
       <div class="d-flex col">
         <h5 class="text-body-secondary">Stato residenza:</h5>
@@ -122,25 +110,13 @@
         <h5 class="text-body-secondary">Città residenza:</h5>
         <h5 class="ms-2">{{ student.residenceCity }}</h5>
       </div>
-
-      <!-- Postal Code -->
-      <!-- <div class="d-flex col">
-                <h5 class="text-body-secondary">CAP: </h5>
-                <h5 class="ms-2">{{}}</h5>
-            </div> -->
-
-      <!--Address-->
-      <!-- <div class="d-flex col">
-                <h5 class="text-body-secondary">Indirizzo: </h5>
-                <h5 class="ms-2">{{ student.address }}</h5>
-            </div> -->
-    </div>
+      <hr class="mt-5">
   </div>
 
   <!-- PC TABLE -->
-  <div class="row mt-5">
+  <div class="row mt-5 mb-5 tabella-pc">
     <h4 class="text-body-primary">PC:</h4>
-    <table class="table">
+    <table class="table tabella-pc">
       <thead>
         <tr>
           <th scope="col">Modello</th>
@@ -165,7 +141,7 @@
   </div>
 
   <!-- ACCESSORIES -->
-  <div class="row mt-3">
+  <div class="row mt-5 tabella-acc">
     <h4 class="text-body-primary">ACCESSORIES:</h4>
     <table class="table">
       <thead>
@@ -176,10 +152,10 @@
       </thead>
       <tbody>
         @for (ass of student.accessoryAssignments; track $index) {
-            <tr>
-              <td>{{ ass.accessory.name }}</td>
-              <td>{{ ass.assignmentDate | date: 'dd/MM/yyyy' }}</td>
-            </tr>
+        <tr>
+          <td>{{ ass.accessory.name }}</td>
+          <td>{{ ass.assignmentDate | date: 'dd/MM/yyyy' }}</td>
+        </tr>
         }
       </tbody>
     </table>
