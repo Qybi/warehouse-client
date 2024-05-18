@@ -11,6 +11,6 @@ export interface Pc {
   useCycle: number;
   notes: string;
 
-  model: PCModelStock;
+  stock?: PCModelStock;
   student?: Student;
 }

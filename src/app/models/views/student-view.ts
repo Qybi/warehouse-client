@@ -4,6 +4,7 @@ import { PCAssignment } from "../pcassignment";
 import { Student } from "../student";
 
 export interface StudentView {
+    id: number;
     surname: string;
     name: string;
     dateOfBirth: string;
