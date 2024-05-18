@@ -13,7 +13,7 @@
               [(ngModel)]="selectedStock"
             >
               @for (stock of stocks; track $index) {
-              <option [value]="stock">{{ stock.purchaseDate | date: 'yyyy' }} - {{ stock.brand }}</option>
+              <option [ngValue]="stock">{{ stock.purchaseDate | date: 'yyyy' }} - {{ stock.brand }}</option>
               }
             </select>
           </div>

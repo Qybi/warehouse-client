@@ -1,6 +1,6 @@
 import { Accessory } from "./accessory";
 
-export interface AccessoriesAssignment {
+export interface AccessoryAssignment {
   id: number;
   accessoryId: number;
   studentId: number;

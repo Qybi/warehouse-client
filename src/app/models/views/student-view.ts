@@ -1,4 +1,4 @@
-import { AccessoriesAssignment } from "../accessories-assignment";
+import { AccessoryAssignment } from "../accessories-assignment";
 import { Course } from "../course";
 import { PCAssignment } from "../pcassignment";
 import { Student } from "../student";
@@ -19,5 +19,5 @@ export interface StudentView {
     
     course: Course;
     pcAssignments: PCAssignment[];
-    accessoryAssignments: AccessoriesAssignment[];
+    accessoryAssignments: AccessoryAssignment[];
 }

@@ -60,7 +60,9 @@ export class ModalAssignPcComponent {
       next: (res: Pc) => {
         this.serialOk = !!res;
         if (this.serialOk) {
+          this.isNewPC = false;
           this.pc = res;
+          this.pc.propertySticker = '';
         } else {
           this.isNewPC = true;
           const m = this.modalService.open(NewPcFromSerialCheckComponent, { size: 'lg', backdrop: 'static', animation: true, keyboard: true });
@@ -79,7 +81,7 @@ export class ModalAssignPcComponent {
       this.pcAssignment.pcId = this.pc.id;
     else {
       this.pc.isMuletto = false;
-      this.pc.status = "Assegnato";
+      this.pc.status = "ASSEGNATO";
       this.pc.useCycle = 1;
       this.pcAssignment.pc = this.pc;
     }

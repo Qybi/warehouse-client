@@ -51,7 +51,7 @@
                     <label for="assignmentReason">Motivo di consegna</label>
                     <select class="form-select" name="assignmentReason" id="assignMentReason" [(ngModel)]="selectedReason">
                         @for (item of reasonsAssignment; track $index) {
-                        <option [value]="item">{{ item.name }}</option>
+                        <option [ngValue]="item">{{ item.name }}</option>
                         }
                     </select>
                 </div>

@@ -13,12 +13,11 @@ import { AuthService } from '../../services/auth.service';
 import { PCAssignmentService } from '../../services/pcassignment.service';
 import { AccessoryAssignmentService } from '../../services/accessory-assignment.service';
 import { PCAssignment } from '../../models/pcassignment';
-import { AccessoriesAssignment } from '../../models/accessories-assignment';
-import { Pc } from '../../models/pc';
-import { PCModelStock } from '../../models/pcmodel-stock';
+import { AccessoryAssignment } from '../../models/accessories-assignment';
 import { Course } from '../../models/course';
 import { ModalNewStudentTicketComponent } from '../modals/modal-new-student-ticket/modal-new-student-ticket.component';
 import { WorkInProgressComponent } from '../dev/work-in-progress/work-in-progress.component';
+import { ModalReturnComponent } from '../modals/modal-return/modal-return.component';
 
 @Component({
   selector: 'app-student',
@@ -29,7 +28,7 @@ import { WorkInProgressComponent } from '../dev/work-in-progress/work-in-progres
 })
 export class StudentComponent implements OnInit {
   student: StudentView = {
-    course: {} as Course
+    course: {} as Course,
   } as StudentView;
 
   isAdmin: boolean = false;
@@ -61,25 +60,27 @@ export class StudentComponent implements OnInit {
       keyboard: true,
     });
 
-    (m.componentInstance as ModalAssignBundleComponent).initModal(
-      this.student
-    );
+    (m.componentInstance as ModalAssignBundleComponent).initModal(this.student);
   }
 
   refreshPcList() {
-    this.pcAssignmentService.getStudentPCAssignments(this.student.id).subscribe((ass: PCAssignment[]) => {
-      this.student.pcAssignments = ass;
-    });
+    this.pcAssignmentService
+      .getStudentPCAssignments(this.student.id)
+      .subscribe((ass: PCAssignment[]) => {
+        this.student.pcAssignments = ass;
+      });
   }
 
   refreshAccessoriesList() {
-    this.accessoriesAssignmentService.getStudentAccessoryAssignmentDetails(this.student.id).subscribe((ass: AccessoriesAssignment[]) => {
-      this.student.accessoryAssignments = ass;
-    });
+    this.accessoriesAssignmentService
+      .getStudentAccessoryAssignmentDetails(this.student.id)
+      .subscribe((ass: AccessoryAssignment[]) => {
+        this.student.accessoryAssignments = ass;
+      });
   }
 
   async openPcAssign() {
-    console.log(this.student)
+    console.log(this.student);
     const m = this.modalService.open(ModalAssignPcComponent, {
       size: 'lg',
       backdrop: 'static',
@@ -111,6 +112,40 @@ export class StudentComponent implements OnInit {
       backdrop: 'static',
       animation: true,
       keyboard: true,
-    })
+    });
+  }
+
+  async returnPc(pcAssignment: PCAssignment) {
+    const m = this.modalService.open(ModalReturnComponent, {
+      size: 'lg',
+      backdrop: 'static',
+      animation: true,
+      keyboard: true,
+    });
+    (m.componentInstance as ModalReturnComponent).initModal(`PC ${pcAssignment.pc.stock?.brand} ${pcAssignment.pc.stock?.model} - Seriale: ${pcAssignment.pc.serial} - Cespite: ${pcAssignment.pc.propertySticker}`);
+    const res: { returnDate: string; returnReasonId: number } = await m.result;
+
+    this.pcAssignmentService
+      .returnPc(pcAssignment, res.returnDate, res.returnReasonId)
+      .subscribe(() => {
+        this.refreshPcList();
+      });
+  }
+
+  async returnAccessory(accessoryAssignment: AccessoryAssignment) {
+    const m = this.modalService.open(ModalReturnComponent, {
+      size: 'lg',
+      backdrop: 'static',
+      animation: true,
+      keyboard: true,
+    });
+    (m.componentInstance as ModalReturnComponent).initModal(`Accessorio ${accessoryAssignment.accessory.name}`);
+    const res: { dateReturn: string; reasonReturnId: number } = await m.result;
+
+    this.accessoriesAssignmentService
+      .returnAccessory(accessoryAssignment.id, res.dateReturn, res.reasonReturnId)
+      .subscribe(() => {
+        this.refreshAccessoriesList();
+      });
   }
 }

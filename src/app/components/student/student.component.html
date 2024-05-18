@@ -131,7 +131,7 @@
           <th scope="col">Seriale</th>
           <th scope="col">Cespite</th>
           <th scope="col">Data di Consegna</th>
-          <th scope="col">#AZIONI</th>
+          <th scope="col">Azioni</th>
         </tr>
       </thead>
       <tbody>
@@ -141,7 +141,12 @@
           <td>{{ ass.pc.serial }}</td>
           <td>{{ ass.pc.propertySticker }}</td>
           <td>{{ ass.assignmentDate | date : "dd/MM/yyyy" }}</td>
-          <td></td>
+          <td>
+            <button (click)="returnPc(ass)" class="btn btn-outline-danger">
+              <i class="fas fa-rotate-left"></i>
+              <span class="ms-1">Restituzione</span>
+            </button>
+          </td>
         </tr>
         }
       </tbody>
@@ -156,6 +161,7 @@
         <tr>
           <th scope="col">Nome</th>
           <th scope="col">Data di consegna</th>
+          <th scope="col">Azioni</th>
         </tr>
       </thead>
       <tbody>
@@ -163,6 +169,11 @@
         <tr>
           <td>{{ ass.accessory.name }}</td>
           <td>{{ ass.assignmentDate | date : "dd/MM/yyyy" }}</td>
+          <td>
+            <button (click)="returnAccessory(ass)" class="btn btn-outline-danger">
+              <i class="fas fa-return"></i>
+            </button>
+          </td>
         </tr>
         }
       </tbody>
