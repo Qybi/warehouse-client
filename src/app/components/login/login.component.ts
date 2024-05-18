@@ -23,10 +23,12 @@ export class LoginComponent {
   login() {
     this.authService.authenticateUser(this.username, this.password).subscribe((loginResp: LoginResponse) => {
       if (!loginResp.isSuccessful) return;
-      if (loginResp.credentials.roles.map(x => x.toLowerCase()).includes('admin')) {
+      this.authService.setCredentials(loginResp.credentials);
+      if (this.authService.isAdmin()) {
         this.router.navigateByUrl('/students');
-      } else if (loginResp.credentials.roles.includes('student')) {
-        this.router.navigate(['/student', loginResp.credentials.studentId]);
+      } else if (this.authService.isStudent()) {
+        console.log("pepga")
+        this.router.navigateByUrl(`/students/${loginResp.credentials.studentId}`);
       }
     });
     

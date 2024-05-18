@@ -8,5 +8,5 @@ export interface Credentials {
     tokenExpDate: string;
     token: string;
     roles: string[];
-    studentId: number;
+    studentId?: number;
 }

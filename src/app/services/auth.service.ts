@@ -16,14 +16,32 @@ export class AuthService {
   constructor(private http: HttpClient) {
     this.isAuthenticated = !!localStorage.getItem('token');
     this.credentials.token = localStorage.getItem('token') || '';
+    this.credentials.roles = localStorage.getItem('roles')?.split(',') || [];
+    this.credentials.username = localStorage.getItem('username') || '';
   }
 
   isUserAuthenticated() {
     return this.isAuthenticated;
   }
 
+  getCredentials() {
+    return this.credentials;
+  }
+
   getToken() {
     return this.credentials.token || localStorage.getItem('token') || '';
+  }
+
+  isAdmin() { 
+    return this.credentials.roles.map(x => x.toLowerCase()).includes('admin');
+  }
+
+  isStudent() { 
+    return this.credentials.roles.map(x => x.toLowerCase()).includes('student');
+  }
+
+  setCredentials(credentials: Credentials) { 
+    this.credentials = credentials;
   }
 
   authenticateUser(
@@ -43,8 +61,8 @@ export class AuthService {
             localStorage.setItem('token', response.credentials.token);
             localStorage.setItem('username', response.credentials.username);
             localStorage.setItem('roles', response.credentials.roles.join(','));
-            if (response.credentials.roles.includes('user')) {
-              localStorage.setItem('studentId', response.credentials.studentId.toString());
+            if (response.credentials.roles.includes('Student')) {
+              localStorage.setItem('studentId', (response.credentials.studentId ?? '').toString());
             }
           }
         })
