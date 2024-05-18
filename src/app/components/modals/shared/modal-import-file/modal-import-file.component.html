@@ -10,7 +10,7 @@
 <div class="modal-body">
   <div class="mb-3">
     <label for="formFile" class="form-label">{{ message }}</label>
-    <input (change)="handleFileInput($event)" (change)="onFileChange($event)" accept=".xls, .xlsx" class="form-control" type="file" id="formFile" />
+    <input autocomplete=off (change)="handleFileInput($event)" (change)="onFileChange($event)" accept=".xls, .xlsx" class="form-control" type="file" id="formFile" />
   </div>
 </div>
 <div class="modal-footer">

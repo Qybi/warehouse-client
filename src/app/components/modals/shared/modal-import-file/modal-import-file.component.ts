@@ -83,6 +83,5 @@ export class ModalImportFileComponent {
 
   uploadFile(studentJson: string) {
     this.studentService.postStudentJson(studentJson);
-
   }
 }

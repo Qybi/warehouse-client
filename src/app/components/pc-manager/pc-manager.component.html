@@ -27,11 +27,11 @@
             <tbody>
               @for (s of displayPcs; track $index) {
               <tr>
-                <td>{{ s.model.brand }}</td>
+                <td>{{ s.stock?.brand }}</td>
                 <td>{{ s.serial }}</td>
                 <td>{{ s.propertySticker }}</td>
-                <td>{{ s.model.cPU }}</td>
-                <td>{{ s.model.rAM }}</td>
+                <td>{{ s.stock?.cpu }}</td>
+                <td>{{ s.stock?.ram }}</td>
                 <td>{{ s.student?.schoolIdentifierId || '' }}</td>
               </tr>
               }

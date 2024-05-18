@@ -6,15 +6,15 @@
         <div class="col-12">
             <div class="mb-2">
                 <label for="shortName" class="form-label">Codice corso</label>
-                <input type="text" class="form-control" id="shortName" [(ngModel)]="course.code" />
+                <input autocomplete=off type="text" class="form-control" id="shortName" [(ngModel)]="course.code" />
             </div>
             <div class="mb-2">
                 <label for="shortName" class="form-label">Nome abbreviato</label>
-                <input type="text" class="form-control" id="shortName" [(ngModel)]="course.shortName" />
+                <input autocomplete=off type="text" class="form-control" id="shortName" [(ngModel)]="course.shortName" />
             </div>
             <div class="mb-2">
                 <label for="fullName" class="form-label">Nome completo</label>
-                <input type="text" class="form-control" id="fullName" [(ngModel)]="course.fullName" />
+                <input autocomplete=off type="text" class="form-control" id="fullName" [(ngModel)]="course.fullName" />
             </div>
             <div class="mb-2">
                 <label for="status">Status</label>
@@ -27,19 +27,19 @@
                 <div class="col-6">
                     <div class="mb-2">
                         <label for="dateStart" class="form-label">Data di inizio</label>
-                        <input type="date" class="form-control" id="dateStart" [(ngModel)]="course.dateStart" />
+                        <input autocomplete=off type="date" class="form-control" id="dateStart" [(ngModel)]="course.dateStart" />
                     </div>
                 </div>
                 <div class="col-6">
                     <div>
                         <label for="dateEnd" class="form-label">Data di fine</label>
-                        <input type="date" class="form-control" id="dateEnd" [(ngModel)]="course.dateEnd" />
+                        <input autocomplete=off type="date" class="form-control" id="dateEnd" [(ngModel)]="course.dateEnd" />
                     </div>
                 </div>
             </div>
             <div class="mb-2">
                 <label for="location" class="form-label">Luogo</label>
-                <input type="text" class="form-control" id="location" [(ngModel)]="course.location" />
+                <input autocomplete=off type="text" class="form-control" id="location" [(ngModel)]="course.location" />
             </div>
         </div>
     </div>

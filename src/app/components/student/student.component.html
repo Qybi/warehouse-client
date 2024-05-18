@@ -1,27 +1,31 @@
 <div class="container-fluid mt-3">
   <!--Title-->
-  <div class="col-12  d-flex justify-content-between wrapper-pulsanti">
+  @if (isAdmin) {
+  <div class="col-12 d-flex wrapper-pulsanti">
     <button (click)="openBundleAssign()" class="btn btn-sm btn-outline-primary">
       <i class="fa-solid fa-boxes-packing"></i>
       <span class="ms-1">Assegna Bundle</span>
     </button>
-    <button (click)="openPcAssign()" class="btn btn-sm btn-outline-primary">
+    <button (click)="openPcAssign()" class="btn btn-sm btn-outline-primary ms-2">
       <i class="fa-solid fa-laptop"></i>
       <span class="ms-1">Assegna Pc</span>
     </button>
-    <button (click)="openAccessoryAssign()" class="btn btn-sm btn-outline-primary">
+    <button
+      (click)="openAccessoryAssign()"
+      class="btn btn-sm btn-outline-primary ms-2"
+    >
       <i class="fa-solid fa-computer-mouse"></i>
       <span class="ms-1">Assegna Accessori</span>
     </button>
   </div>
+  }
 
-  <div class="mt-5 wrapper-anagrafica">
+  <div class="mt-2 wrapper-anagrafica">
     <h3>Dati studente:</h3>
   </div>
 
-
   <!--Name, Surname, Course, DoB -->
-  <div class="col mt-5 wrapper-anagrafica">
+  <div class="col mt-2 wrapper-anagrafica">
     <!--Name-->
     <div class="d-flex col-8 m-2">
       <h5 class="text-body-secondary">Nome:</h5>
@@ -47,70 +51,74 @@
   </div>
 
   <!-- Hidden Data -->
-  <button class="btn btn-primary mt-4" type="button" data-bs-toggle="collapse" data-bs-target="#contenutoNascosto">
+  <button
+    class="btn btn-primary mt-4"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#contenutoNascosto"
+  >
     Mostra altro
   </button>
   <div class="collapse mt-3 data-wrapper" id="contenutoNascosto">
+    <hr class="mb-5" />
+    <!-- User Email -->
+    <div class="d-flex col">
+      <h5 class="text-body-secondary">Email:</h5>
+      <h5 class="ms-2">{{ student.emailUser }}</h5>
+    </div>
 
-    <hr class="mb-5">
-      <!-- User Email -->
-      <div class="d-flex col">
-        <h5 class="text-body-secondary">Email:</h5>
-        <h5 class="ms-2">{{ student.emailUser }}</h5>
-      </div>
+    <!-- School Identifier -->
+    <div class="d-flex col">
+      <h5 class="text-body-secondary">Matricola:</h5>
+      <h5 class="ms-2">{{ student.schoolIdentifier }}</h5>
+    </div>
 
-      <!-- School Identifier -->
-      <div class="d-flex col">
-        <h5 class="text-body-secondary">Matricola:</h5>
-        <h5 class="ms-2">{{ student.schoolIdentifier }}</h5>
-      </div>
-
-      <!-- Course Code-->
-      <div class="d-flex col">
-        <h5 class="text-body-secondary">Codice corso:</h5>
-        <h5 class="ms-2">CLED</h5>
-      </div>
+    <!-- Course Code-->
+    <div class="d-flex col">
+      <h5 class="text-body-secondary">Codice corso:</h5>
+      <h5 class="ms-2">CLED</h5>
+    </div>
 
     <!-- status -->
-      <div class="d-flex col">
-        <h5 class="text-body-secondary">Status:</h5>
-        <h5 class="ms-2">{{ student.status }}</h5>
-      </div>
+    <div class="d-flex col">
+      <h5 class="text-body-secondary">Status:</h5>
+      <h5 class="ms-2">{{ student.status }}</h5>
+    </div>
 
     <!-- Birth -->
     <h3 class="text-body-primary mt-5 fst-italic">Dati di nascita:</h3>
-      <!--Date of Birth-->
-      <div class="d-flex col">
-        <h5 class="text-body-secondary">Data di nascita:</h5>
-        <h5 class="ms-2">{{ student.dateOfBirth }}</h5>
-      </div>
+    <!--Date of Birth-->
+    <div class="d-flex col">
+      <h5 class="text-body-secondary">Data di nascita:</h5>
+      <h5 class="ms-2">{{ student.dateOfBirth }}</h5>
+    </div>
 
-      <!-- Country of Birth -->
-      <div class="d-flex col">
-        <h5 class="text-body-secondary">Stato di nascita:</h5>
-        <h5 class="ms-2">{{ student.birthCountry }}</h5>
-      </div>
+    <!-- Country of Birth -->
+    <div class="d-flex col">
+      <h5 class="text-body-secondary">Stato di nascita:</h5>
+      <h5 class="ms-2">{{ student.birthCountry }}</h5>
+    </div>
 
-      <!-- City of Birth -->
-      <div class="d-flex col">
-        <h5 class="text-body-secondary">Città di nascita:</h5>
-        <h5 class="ms-2">{{ student.birthCity }}</h5>
-      </div>
+    <!-- City of Birth -->
+    <div class="d-flex col">
+      <h5 class="text-body-secondary">Città di nascita:</h5>
+      <h5 class="ms-2">{{ student.birthCity }}</h5>
+    </div>
 
     <!-- Residency -->
     <h3 class="text-body-primary mt-5 fst-italic">Dati residenza:</h3>
-      <!-- Country -->
-      <div class="d-flex col">
-        <h5 class="text-body-secondary">Stato residenza:</h5>
-        <h5 class="ms-2">{{ student.residenceCountry }}</h5>
-      </div>
+    <!-- Country -->
+    <div class="d-flex col">
+      <h5 class="text-body-secondary">Stato residenza:</h5>
+      <h5 class="ms-2">{{ student.residenceCountry }}</h5>
+    </div>
 
-      <!-- City -->
-      <div class="d-flex col">
-        <h5 class="text-body-secondary">Città residenza:</h5>
-        <h5 class="ms-2">{{ student.residenceCity }}</h5>
-      </div>
-      <hr class="mt-5">
+    <!-- City -->
+    <div class="d-flex col">
+      <h5 class="text-body-secondary">Città residenza:</h5>
+      <h5 class="ms-2">{{ student.residenceCity }}</h5>
+    </div>
+    <hr class="mt-5" />
   </div>
 
   <!-- PC TABLE -->
@@ -129,10 +137,10 @@
       <tbody>
         @for (ass of student.pcAssignments; track $index) {
         <tr>
-          <td>{{ ass.pc.model }}</td>
+          <td>{{ ass.pc.stock?.brand }}</td>
           <td>{{ ass.pc.serial }}</td>
           <td>{{ ass.pc.propertySticker }}</td>
-          <td>{{ ass.assignmentDate }}</td>
+          <td>{{ ass.assignmentDate | date : "dd/MM/yyyy" }}</td>
           <td></td>
         </tr>
         }
@@ -141,8 +149,8 @@
   </div>
 
   <!-- ACCESSORIES -->
-  <div class="row mt-5 tabella-acc">
-    <h4 class="text-body-primary">ACCESSORIES:</h4>
+  <div class="row mt-2 tabella-acc">
+    <h4 class="text-body-primary">Accessori:</h4>
     <table class="table">
       <thead>
         <tr>
@@ -154,10 +162,26 @@
         @for (ass of student.accessoryAssignments; track $index) {
         <tr>
           <td>{{ ass.accessory.name }}</td>
-          <td>{{ ass.assignmentDate | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ ass.assignmentDate | date : "dd/MM/yyyy" }}</td>
         </tr>
         }
       </tbody>
     </table>
   </div>
+  @if (!isAdmin) {
+  <div class="row mt-2">
+    <h5>TICKETS</h5>
+    <div class="col-12 wrapper-pulsanti">
+      <button (click)="openNewTicket()" class="btn btn-sm btn-outline-primary">
+        <i class="fa-solid fa-ticket"></i>
+        <span class="ms-1">Apri ticket</span>
+      </button>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-12">
+      <app-work-in-progress></app-work-in-progress>
+    </div>
+  </div>
+  }
 </div>

@@ -1,15 +1,15 @@
 import { Component, inject } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Student } from '../../../../models/student';
 import { PCAssignmentService } from '../../../../services/pcassignment.service';
 import { PCService } from '../../../../services/pc.service';
 import { Pc } from '../../../../models/pc';
 import { FormsModule } from '@angular/forms';
-import { TicketService } from '../../../../services/ticket.service';
-import { PCModelStockService } from '../../../../services/pcmodel-stock.service';
-import { PCModelStock } from '../../../../models/pcmodel-stock';
 import { PCAssignment } from '../../../../models/pcassignment';
-import { Timestamp, map } from 'rxjs';
+import { StudentView } from '../../../../models/views/student-view';
+import { NewPcFromSerialCheckComponent } from '../../new-pc-from-serial-check/new-pc-from-serial-check.component';
+import { ReasonsAssignment } from '../../../../models/reasons-assignment';
+import { ReasonsService } from '../../../../services/reasons.service';
+import { UsefulUtilities } from '../../../../useful-utilities';
 
 @Component({
   selector: 'app-modal-assign-pc',
@@ -19,47 +19,35 @@ import { Timestamp, map } from 'rxjs';
   styleUrl: './modal-assign-pc.component.scss'
 })
 export class ModalAssignPcComponent {
-  // private idValue: number = 2;
-  serial: string = "";
-  cespite: string = "";
+  student: StudentView = {} as StudentView;
+
   serialOk: boolean = false;
-  notes: string = "";
-
-  selectedOption: string = "";
-
-  pcModelStocks: PCModelStock[] = [];
-  displayStock: PCModelStock[] = [];
-
-  assignmentDate: string = "";
-  returnDate: string = ""
-
-
-
-  //se il valore è 0 il check non è stato effettuate, se è 1 il valore è presente, se è -1 non è presente
-  modalValue: number = 0;
-  // cespiteOk: boolean = false;
-
-  student: Student = {} as Student
+  isNewPC: boolean = false;
+  pcAssignment: PCAssignment = {} as PCAssignment;
   pc: Pc = {} as Pc
-  pcAssignment: PCAssignment = {} as PCAssignment
+
+  reasonsAssignment: ReasonsAssignment[] = [];
+  selectedReason: ReasonsAssignment = {} as ReasonsAssignment;
 
   private modalService = inject(NgbModal);
 
   constructor(
     public activeModal: NgbActiveModal,
     private pcService: PCService,
-    private pcModelStockService: PCModelStockService,
     private pcAssignmentService: PCAssignmentService,
-
-  ) { }
-
-  initModal(student: Student) {
-    this.student = student;
-    this.setFocus();
-    this.pcModelStockService.getPCModelStocks().subscribe((pcModelStocks) => {
-      this.pcModelStocks = pcModelStocks;
-      this.displayStock = this.pcModelStocks.map((x) => x);
+  ) { 
+    inject(ReasonsService).getAssignmentReasons().subscribe((reasons: ReasonsAssignment[]) => {
+      this.reasonsAssignment = reasons;
+      this.selectedReason = reasons[0];
     });
+  }
+
+  initModal(student: StudentView) {
+    console.log(student);
+    this.student = student;
+    this.pcAssignment.studentId = student.id;
+    this.pcAssignment.assignmentDate = UsefulUtilities.cutDate((new Date()).toISOString());
+    this.setFocus();
   }
 
   setFocus() {
@@ -68,70 +56,42 @@ export class ModalAssignPcComponent {
   }
 
   checkSerialPC() {
-    this.pcService.checkSerial(this.serial).subscribe({
-      next: (res: any) => {
-        if (!res) {
-          this.modalValue = -1;
-          return
-        };
-        this.serialOk = true;
-        this.modalValue = 1;
+    this.pcService.getPcFromSerial(this.pc.serial).subscribe({
+      next: (res: Pc) => {
+        this.serialOk = !!res;
+        if (this.serialOk) {
+          this.pc = res;
+        } else {
+          this.isNewPC = true;
+          const m = this.modalService.open(NewPcFromSerialCheckComponent, { size: 'lg', backdrop: 'static', animation: true, keyboard: true });
+          m.result.then((stockId: number) => {
+            this.pc.stockId = stockId;
+            console.log('current state of pc', this.pc);
+          });
+        }
       }
     });
   }
 
-  saveSerial() {
-    // Extract the stock ID from the selected option
-    const selectValue = this.selectedOption.split(' ');
-    const stockId = +selectValue[0];
-
-    // Create a new PC object with the updated properties
-    this.pc = {
-      stockId,
-      serial: this.serial,
-      isMuletto: false,
-      useCycle: 0
-    } as Pc;
-
-    // Send the new PC object to the backend
-
-    this.modalValue = 0;
-  }
-
   async assignPc() {
-
-
-
-    // this.pc.propertySticker = this.cespite;
-    this.pc.notes = this.notes;
-    this.pc.propertySticker = this.cespite;
-    this.pcAssignment.assignmentDate = this.assignmentDate;
-    this.pcAssignment.isReturned = false;
-    this.pcAssignment.forecastedReturnDate = this.returnDate;
-    this.pcAssignment.studentId = this.student.id;
-
-    // this.pcService.getPcIdFromSerial(this.serial).subscribe({
-    //   next: (res: Pc) => {
-    //     this.idValue = res.id;
-    //   }
-    // })
-
-    // this.pc.id = this.idValue;
-
-    if (!this.serialOk) {
-      this.pcService.insertSerial(this.pc).subscribe(res => {
-        console.log("Serial inserted successfully");
-      });
+    if (!this.pc || !this.pcAssignment) return;
+    if (!this.isNewPC)
+      this.pcAssignment.pcId = this.pc.id;
+    else {
+      this.pc.isMuletto = false;
+      this.pc.status = "Assegnato";
+      this.pc.useCycle = 1;
+      this.pcAssignment.pc = this.pc;
     }
-    this.pcService.updatePc(this.pc).subscribe(res => {
-      console.log("Pc update successfully");
+    this.pcAssignment.isReturned = false;
+    this.pcAssignment.assignmentReasonId = this.selectedReason.id;
+
+    console.log(this.pcAssignment)
+    
+    this.pcAssignmentService.createPCAssignment(this.pcAssignment, this.isNewPC).subscribe({
+      next: () => {
+        this.activeModal.close();
+      }
     });
-    // this.pcAssignmentService.createPCAssignment(this.pcAssignment).subscribe(res => {
-    //   console.log("Assignment Completed");
-    // });
   }
-
-
-
-
 }

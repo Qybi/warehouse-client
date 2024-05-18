@@ -73,45 +73,4 @@ export class StudentManagerComponent {
       console.log(result);
     });
   }
-/*
-  openBundleAssign() {
-    const m = this.modalService.open(ModalAssignBundleComponent, {
-      size: 'lg',
-      backdrop: 'static',
-      animation: true,
-      keyboard: true,
-    });
-
-    (m.componentInstance as ModalAssignBundleComponent).initModal(
-      this.selectedStudent
-    );
-  }
-
-  openPcAssign() {
-    const m = this.modalService.open(ModalAssignPcComponent, {
-      size: 'lg',
-      backdrop: 'static',
-      animation: true,
-      keyboard: true,
-    });
-
-    (m.componentInstance as ModalAssignPcComponent).initModal(
-      this.selectedStudent
-    );
-  }
-
-  openAccessoryAssign() {
-    const m = this.modalService.open(ModalAssignAccessoriesComponent, {
-      size: 'lg',
-      backdrop: 'static',
-      animation: true,
-      keyboard: true,
-    });
-
-    (m.componentInstance as ModalAssignPcComponent).initModal(
-      this.selectedStudent
-    );
-  }
-*/
-
 }
