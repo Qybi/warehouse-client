@@ -1,0 +1,149 @@
+<div class="modal-body">
+  <form>
+    <div class="row">
+      <div class="col-12">
+        <label for="name">Nome</label>
+        <input
+          class="form-control"
+          type="text"
+          id="name"
+          name="name"
+          [(ngModel)]="accessory.name"
+        />
+      </div>
+      <!-- <div class="col-6">
+        <label for="qty">Quantità totale</label>
+        <input
+          class="form-control"
+          type="number"
+          id="qty"
+          name="qty"
+          [(ngModel)]="accessory.name"
+        />
+      </div> -->
+    </div>
+    <div class="row mt-2">
+      <div class="col-12">
+        <label for="descr">Descrizione</label>
+        <input
+          class="form-control"
+          type="text"
+          id="descr"
+          name="descr"
+          [(ngModel)]="accessory.description"
+        />
+      </div>
+    </div>
+    @if (!!accessory.stock) {
+    <div class="row mt-2">
+      <div class="col-12">
+        <label for="stock">Lotto / Stock</label>
+        <input
+          class="form-control"
+          type="text"
+          id="stock"
+          name="stock"
+          disabled
+          [value]="
+            (accessory.stock?.purchaseDate | date : 'yyyy') +
+            ' - ' +
+            accessory.stock?.brand
+          "
+        />
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-6">
+        <label for="brand">Marca</label>
+        <input
+          disabled
+          class="form-control"
+          type="text"
+          id="brand"
+          name="brand"
+          [(ngModel)]="accessory.stock!.brand"
+        />
+      </div>
+      <div class="col-6">
+        <label for="model">Modello</label>
+        <input
+          disabled
+          class="form-control"
+          type="text"
+          id="model"
+          name="model"
+          [(ngModel)]="accessory.stock!.model"
+        />
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-4">
+        <label for="cpu">CPU</label>
+        <input
+          disabled
+          class="form-control"
+          type="text"
+          id="cpu"
+          name="cpu"
+          [(ngModel)]="accessory.stock!.cpu"
+        />
+      </div>
+      <div class="col-4">
+        <label for="ram">RAM</label>
+        <input
+          disabled
+          class="form-control"
+          type="text"
+          id="ram"
+          name="ram"
+          [(ngModel)]="accessory.stock!.ram"
+        />
+      </div>
+      <div class="col-4">
+        <label for="storage">Storage</label>
+        <input
+          disabled
+          class="form-control"
+          type="text"
+          id="storage"
+          name="storage"
+          [(ngModel)]="accessory.stock!.storage"
+        />
+      </div>
+    </div>
+    }
+    <hr />
+    <div class="row mt-2">
+      <div class="col-12">
+        <label style="font-size: 1.2rem; font-weight: 400" for="assignments"
+          >Storico assegnamenti</label
+        >
+        <table id="assignments" class="table">
+          <thead>
+            <th scope="col">Matricola</th>
+            <th scope="col">Studente</th>
+            <th scope="col">Data assegnazione</th>
+            <th scope="col">Data riconsegna effettiva</th>
+            <th scope="col">Motivo riconsegna</th>
+          </thead>
+          <tbody>
+            @for (item of accessory.assignments; track $index) {
+            <tr>
+              <td>{{ item.student.schoolIdentifierId }}</td>
+              <td>{{ item.student.surname }} {{ item.student.name }}</td>
+              <td>{{ item.assignmentDate | date : "dd/MM/yyyy" }}</td>
+              <td>{{ item.actualReturnDate ?? "" | date : "dd/MM/yyyy" }}</td>
+              <td>{{ item.returnReason?.name ?? "" }}</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-outline-secondary" (click)="activeModal.close()">
+    Chiudi
+  </button>
+</div>
