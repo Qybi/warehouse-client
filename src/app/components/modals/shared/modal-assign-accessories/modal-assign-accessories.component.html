@@ -8,9 +8,9 @@
         <div class="row">
             <div class=" col form-group mt-2">
                 <label for="exampleFormControlSelect1">Codice Accessorio</label>
-                <select class="form-control w-100" id="exampleFormControlSelect1" [(ngModel)]="accessoryAssignment.accessoryId">
+                <select class="form-select w-100" id="exampleFormControlSelect1" name="accessorySelect" [(ngModel)]="selectedAccessory">
                     @for (acc of accessoryItems; track $index) {
-                        <option>{{ acc.id }}</option>
+                        <option [ngValue]="acc">{{ acc.id }}</option>
                     }
                 </select>
             </div>

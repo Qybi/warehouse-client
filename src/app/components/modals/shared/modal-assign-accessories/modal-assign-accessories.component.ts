@@ -9,6 +9,7 @@ import { AccessoryService } from '../../../../services/accessories.service';
 import { AccessoryAssignment } from '../../../../models/accessories-assignment';
 import { FormsModule } from '@angular/forms';
 import { AccessoryAssignmentService } from '../../../../services/accessory-assignment.service';
+import { UsefulUtilities } from '../../../../useful-utilities';
 
 @Component({
   selector: 'app-modal-assign-accessories',
@@ -24,6 +25,7 @@ export class ModalAssignAccessoriesComponent {
   accessories: Accessory[] = []
   accessoryAssignment: AccessoryAssignment = {} as AccessoryAssignment
   accessoryId: number | null = null
+  selectedAccessory:Accessory = {} as Accessory;
   
 
   constructor(
@@ -38,19 +40,21 @@ export class ModalAssignAccessoriesComponent {
     this.accessoryService.getAccessories().subscribe((accessory) => {
       this.accessories = accessory;
       this.accessoryItems = this.accessories.map((x) => x);
+      this.selectedAccessory = accessory[0];
     });
   }
 
   initModal(student: StudentView) {
     this.student = student;
-
+    this.accessoryAssignment.assignmentDate = UsefulUtilities.cutDate((new Date()).toISOString());
   }
 
-  assignAccessory(){
+  async assignAccessory(){
+    this.accessoryAssignment.accessory = this.selectedAccessory;
+    this.accessoryAssignment.accessoryId = this.selectedAccessory.id;
     this.accessoryAssignment.studentId = this.student.id;
     this.accessoryAssignment.isReturned = false;
-    this.accessoryAssignment.accessory = this.accessoryAssignment.accessory;
-    console.log(this.accessoryAssignment.accessoryId);
+    console.log(this.accessoryAssignment);
     this.accessotyAssignmentService.createAccessoryAssignment(this.accessoryAssignment).subscribe({
       next: () => {
         this.activeModal.close();
