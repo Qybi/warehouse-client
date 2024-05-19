@@ -17,13 +17,13 @@ export class AccessoryService {
     'Content-Type': 'application/json',
   });
   
-  private _baseURL:string = '/accessories';  // URL del backend Blazor
+  private _baseURL:string = '/accessory';  // URL del backend Blazor
   
   constructor(private http: HttpClient) {}
 
   //      --- OPERAZIONI CRUD ---
   //funzione che ottiene l'elenco degli accessori
-  getAccessoriess(): Observable<Accessory[]> {
+  getAccessories(): Observable<Accessory[]> {
     return this.http.get<Accessory[]>(`${this._baseURL}`);
   }
   

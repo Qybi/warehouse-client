@@ -15,7 +15,7 @@ export class AccessoryAssignmentService {  //servizio usato per comunicare con l
     'Content-Type': 'application/json',
   });
   
-  private _baseURL:string = '/courses';  // URL del backend Blazor
+  private _baseURL:string = '/accessoryAssignment';  // URL del backend Blazor
   
   constructor(private http: HttpClient) {}
   
