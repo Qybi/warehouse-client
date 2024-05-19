@@ -75,7 +75,7 @@ export class StudentComponent implements OnInit {
     this.accessoriesAssignmentService
       .getStudentAccessoryAssignmentDetails(this.student.id)
       .subscribe((ass: AccessoryAssignment[]) => {
-        this.student.accessoryAssignments = ass;
+        this.student.accessoriesAssignments = ass;
       });
   }
 
@@ -140,10 +140,10 @@ export class StudentComponent implements OnInit {
       keyboard: true,
     });
     (m.componentInstance as ModalReturnComponent).initModal(`Accessorio ${accessoryAssignment.accessory.name}`);
-    const res: { dateReturn: string; reasonReturnId: number } = await m.result;
+    const res: { returnDate: string; returnReasonId: number } = await m.result;
 
     this.accessoriesAssignmentService
-      .returnAccessory(accessoryAssignment.id, res.dateReturn, res.reasonReturnId)
+      .returnAccessory(accessoryAssignment.id, res.returnDate, res.returnReasonId)
       .subscribe(() => {
         this.refreshAccessoriesList();
       });

@@ -165,13 +165,14 @@
         </tr>
       </thead>
       <tbody>
-        @for (ass of student.accessoryAssignments; track $index) {
+        @for (ass of student.accessoriesAssignments; track $index) {
         <tr>
           <td>{{ ass.accessory.name }}</td>
           <td>{{ ass.assignmentDate | date : "dd/MM/yyyy" }}</td>
           <td>
             <button (click)="returnAccessory(ass)" class="btn btn-outline-danger">
-              <i class="fas fa-return"></i>
+              <i class="fas fa-rotate-left"></i>
+              <span class="ms-1">Restituzione</span>
             </button>
           </td>
         </tr>

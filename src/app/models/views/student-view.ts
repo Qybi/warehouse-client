@@ -19,5 +19,5 @@ export interface StudentView {
     
     course: Course;
     pcAssignments: PCAssignment[];
-    accessoryAssignments: AccessoryAssignment[];
+    accessoriesAssignments: AccessoryAssignment[];
 }

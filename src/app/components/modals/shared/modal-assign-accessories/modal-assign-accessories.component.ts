@@ -1,7 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Student } from '../../../../models/student';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { PCService } from '../../../../services/pc.service';
 import { Pc } from '../../../../models/pc';
 import { StudentView } from '../../../../models/views/student-view';
 import { Accessory } from '../../../../models/accessory';
@@ -18,57 +16,59 @@ import { AccessoryAssignment } from '../../../../models/accessory-assignment';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './modal-assign-accessories.component.html',
-  styleUrl: './modal-assign-accessories.component.scss'
+  styleUrl: './modal-assign-accessories.component.scss',
 })
 export class ModalAssignAccessoriesComponent {
-  student: StudentView = {} as StudentView
-  pc:Pc = {} as Pc
-  accessoryItems: Accessory[] = []
-  accessories: Accessory[] = []
-  accessoryAssignment: AccessoryAssignment = {} as AccessoryAssignment
-  accessoryId: number | null = null
-  selectedAccessory:Accessory = {} as Accessory;
+  accessoryAssignment: AccessoryAssignment = {} as AccessoryAssignment;
+
+  student: StudentView = {} as StudentView;
+  
+  accessories: Accessory[] = [];
+  accessoryId: number | null = null;
+  selectedAccessory: Accessory = {} as Accessory;
 
   reasonsAssignment: ReasonsAssignment[] = [];
   selectedReason: ReasonsAssignment = {} as ReasonsAssignment;
-  
 
   constructor(
     public activeModal: NgbActiveModal,
-    private pcservice: PCService,
     private accessoryService: AccessoryService,
-    private accessotyAssignmentService: AccessoryAssignmentService
-  ){
-    inject(ReasonsService).getAssignmentReasons().subscribe((reasons: ReasonsAssignment[]) => {
-      this.reasonsAssignment = reasons;
-      this.selectedReason = reasons[0];
-    });
+    private accessoryAssignmentService: AccessoryAssignmentService
+  ) {
+    inject(ReasonsService)
+      .getAssignmentReasons()
+      .subscribe((reasons: ReasonsAssignment[]) => {
+        this.reasonsAssignment = reasons;
+        this.selectedReason = reasons[0];
+      });
   }
-
 
   ngOnInit() {
     this.accessoryService.getAccessories().subscribe((accessory) => {
       this.accessories = accessory;
-      this.accessoryItems = this.accessories.map((x) => x);
       this.selectedAccessory = accessory[0];
+      this.accessoryAssignment.assignmentDate = UsefulUtilities.cutDate(
+        new Date().toISOString()
+      );
     });
   }
 
   initModal(student: StudentView) {
     this.student = student;
-    this.accessoryAssignment.assignmentDate = UsefulUtilities.cutDate((new Date()).toISOString());
   }
 
-  async assignAccessory(){
+  async assignAccessory() {
     this.accessoryAssignment.accessoryId = this.selectedAccessory.id;
     this.accessoryAssignment.studentId = this.student.id;
     this.accessoryAssignment.isReturned = false;
-    this.accessoryAssignment.assignmentReasonId = this.selectedReason.id
+    this.accessoryAssignment.assignmentReasonId = this.selectedReason.id;
     console.log(this.accessoryAssignment);
-    this.accessotyAssignmentService.createAccessoryAssignment(this.accessoryAssignment).subscribe({
-      next: () => {
-        this.activeModal.close();
-      }
-    })
+    this.accessoryAssignmentService
+      .createAccessoryAssignment(this.accessoryAssignment)
+      .subscribe({
+        next: () => {
+          this.activeModal.close();
+        },
+      });
   }
 }

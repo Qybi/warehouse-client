@@ -11,7 +11,7 @@ export interface AccessoryAssignment {
   assignmentReasonId: number;
   isReturned: boolean;
   forecastedReturnDate: string;
-  actualReturnDate: string;
+  actualReturnDate?: string;
   returnReasonId: number;
 
   accessory: Accessory;

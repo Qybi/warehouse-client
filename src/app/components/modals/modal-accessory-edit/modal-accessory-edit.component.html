@@ -45,9 +45,9 @@
           name="stock"
           disabled
           [value]="
-            (accessory.stock?.purchaseDate | date : 'yyyy') +
+            (accessory.stock.purchaseDate | date : 'yyyy') +
             ' - ' +
-            accessory.stock?.brand
+            accessory.stock.brand
           "
         />
       </div>

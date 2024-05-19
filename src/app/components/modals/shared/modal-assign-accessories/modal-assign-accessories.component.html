@@ -7,10 +7,10 @@
         </div>
         <div class="row">
             <div class=" col form-group mt-2">
-                <label for="exampleFormControlSelect1">Codice Accessorio</label>
+                <label for="exampleFormControlSelect1">Accessorio</label>
                 <select class="form-select w-100" id="exampleFormControlSelect1" name="accessorySelect" [(ngModel)]="selectedAccessory">
-                    @for (acc of accessoryItems; track $index) {
-                        <option [ngValue]="acc">{{ acc.id }}</option>
+                    @for (acc of accessories; track $index) {
+                        <option [ngValue]="acc">{{ acc.name }}</option>
                     }
                 </select>
             </div>
@@ -18,11 +18,11 @@
         <div class="row">
             <div class="col form-group mt-4">
                 <label for="assignmentDate">Data Assegnamento</label> <br>
-                <input autocomplete=off type="date" name="assignmentDate" id="assignmentDate" class="w-100 form-control" [(ngModel)]="accessoryAssignment.assignmentDate">
+                <input autocomplete=off type="date" name="assignmentDate" id="assignmentDate" class="form-control" [(ngModel)]="accessoryAssignment.assignmentDate">
             </div>
             <div class="col form-group mt-4">
-                <label for="assignmentDate" class="">Ritorno entro</label> <br>
-                <input autocomplete=off type="date" name="assignmentDate" id="assignmentDate" class="w-100 form-control" [(ngModel)]="accessoryAssignment.forecastedReturnDate">
+                <label for="forecastedReturnDate" class="">Ritorno entro</label> <br>
+                <input autocomplete=off type="date" name="forecastedReturnDate" id="forecastedReturnDate" class="form-control" [(ngModel)]="accessoryAssignment.forecastedReturnDate">
             </div>
         </div>
         <div class="row mt-4">
@@ -37,11 +37,14 @@
                 </div>
             </div>
         </div>
-        <div class="form-group mt-3 mb-3">
-            <label for="exampleFormControlTextarea1">Commento</label>
+        <!-- <div class="form-group mt-3 mb-3">
+            <label for="exampleFormControlTextarea1" [(ngModel)]="accessoryAssignment.note">Commento</label>
             <textarea class="form-control w-100" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div> -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <button type="submit" (click)="assignAccessory()" class="btn btn-sm btn-success w-25">Assegna</button>
+            </div>
         </div>
-        
-        <button type="submit" (click)="assignAccessory()" class="btn btn-sm btn-success w-25">Assegna</button>
     </form>
 </div>
