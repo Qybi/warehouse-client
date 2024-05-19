@@ -6,7 +6,7 @@ import {
 }from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Accessory } from '../models/accessory'; //import del modello per gli accessori
-import { AccessoryAssignment } from '../models/accessories-assignment';
+import { AccessoryAssignment } from '../models/accessory-assignment';
 
 @Injectable({
   providedIn: 'root',

@@ -1,4 +1,7 @@
 import { Accessory } from "./accessory";
+import { ReasonsAssignment } from "./reasons-assignment";
+import { ReasonsReturn } from "./reasons-return";
+import { Student } from "./student";
 
 export interface AccessoryAssignment {
   id: number;
@@ -12,4 +15,7 @@ export interface AccessoryAssignment {
   returnReasonId: number;
 
   accessory: Accessory;
+  student: Student;
+  assignmentReason?: ReasonsAssignment;
+  returnReason?: ReasonsReturn;
 }

@@ -1,44 +1,69 @@
-<div class="container mt-4">
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <h3>Manager Pc</h3>
-        </div>
-        <div class="row">
-          <div class="col-2">
-            <button (click)="openImport()" class="btn btn-sm btn-outline-success">
-              <i class="fa-solid fa-file-import"></i>
-              <span  class="ms-1">Importa Dati Lotto</span>
+<div class="container-fluid mt-4">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <h3>Manager PC</h3>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <form class="d-flex">
+            <input
+              autocomplete="off"
+              class="form-control form-control-sm me-2"
+              type="search"
+              name="search"
+              placeholder="Search"
+              aria-label="Search"
+              [(ngModel)]="search"
+            />
+            <button
+              class="btn btn-sm btn-outline-success"
+              type="submit"
+              (click)="searchPc()"
+            >
+              Cerca
             </button>
-          </div>
+          </form>
         </div>
-        <div class="row mt-2">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Marca</th>
-                <th>Seriale</th>
-                <th>Cespite</th>
-                <th>CPU</th>
-                <th>RAM</th>
-                <th>Assegnato a</th>
-              </tr>
-            </thead>
-            <tbody>
-              @for (s of displayPcs; track $index) {
-              <tr>
-                <td>{{ s.stock?.brand }}</td>
-                <td>{{ s.serial }}</td>
-                <td>{{ s.propertySticker }}</td>
-                <td>{{ s.stock?.cpu }}</td>
-                <td>{{ s.stock?.ram }}</td>
-                <td>{{ s.student?.schoolIdentifierId || '' }}</td>
-              </tr>
-              }
-            </tbody>
-          </table>
+        <div class="col-2">
+          <button (click)="openImport()" class="btn btn-sm btn-outline-success">
+            <i class="fa-solid fa-file-import"></i>
+            <span class="ms-1">Importa Dati Lotto</span>
+          </button>
         </div>
+      </div>
+      <div class="row mt-2">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Marca</th>
+              <th>Seriale</th>
+              <th>Cespite</th>
+              <th>Status</th>
+              <th>CPU</th>
+              <th>RAM</th>
+              <th>Azioni</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (s of displayPcs; track $index) {
+            <tr>
+              <td>{{ s.stock?.brand }}</td>
+              <td>{{ s.serial }}</td>
+              <td>{{ s.status == 'ASSEGNATO' ? s.propertySticker : '' }}</td>
+              <td>{{ s.status }}</td>
+              <td>{{ s.stock?.cpu }}</td>
+              <td>{{ s.stock?.ram }}</td>
+              <td>
+                <button (click)="openEdit(s)" class="btn btn-primary">
+                  <i class="fas fa-pencil"></i>
+                </button>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-  
+</div>
