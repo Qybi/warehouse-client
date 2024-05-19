@@ -6,12 +6,12 @@ import { Pc } from '../../../../models/pc';
 import { StudentView } from '../../../../models/views/student-view';
 import { Accessory } from '../../../../models/accessory';
 import { AccessoryService } from '../../../../services/accessories.service';
-import { AccessoryAssignment } from '../../../../models/accessories-assignment';
 import { FormsModule } from '@angular/forms';
 import { AccessoryAssignmentService } from '../../../../services/accessory-assignment.service';
 import { UsefulUtilities } from '../../../../useful-utilities';
 import { ReasonsAssignment } from '../../../../models/reasons-assignment';
 import { ReasonsService } from '../../../../services/reasons.service';
+import { AccessoryAssignment } from '../../../../models/accessory-assignment';
 
 @Component({
   selector: 'app-modal-assign-accessories',
