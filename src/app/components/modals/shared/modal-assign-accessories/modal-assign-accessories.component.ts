@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Student } from '../../../../models/student';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { PCService } from '../../../../services/pc.service';
@@ -10,6 +10,8 @@ import { AccessoryAssignment } from '../../../../models/accessories-assignment';
 import { FormsModule } from '@angular/forms';
 import { AccessoryAssignmentService } from '../../../../services/accessory-assignment.service';
 import { UsefulUtilities } from '../../../../useful-utilities';
+import { ReasonsAssignment } from '../../../../models/reasons-assignment';
+import { ReasonsService } from '../../../../services/reasons.service';
 
 @Component({
   selector: 'app-modal-assign-accessories',
@@ -26,6 +28,9 @@ export class ModalAssignAccessoriesComponent {
   accessoryAssignment: AccessoryAssignment = {} as AccessoryAssignment
   accessoryId: number | null = null
   selectedAccessory:Accessory = {} as Accessory;
+
+  reasonsAssignment: ReasonsAssignment[] = [];
+  selectedReason: ReasonsAssignment = {} as ReasonsAssignment;
   
 
   constructor(
@@ -33,7 +38,12 @@ export class ModalAssignAccessoriesComponent {
     private pcservice: PCService,
     private accessoryService: AccessoryService,
     private accessotyAssignmentService: AccessoryAssignmentService
-  ){}
+  ){
+    inject(ReasonsService).getAssignmentReasons().subscribe((reasons: ReasonsAssignment[]) => {
+      this.reasonsAssignment = reasons;
+      this.selectedReason = reasons[0];
+    });
+  }
 
 
   ngOnInit() {
@@ -50,10 +60,10 @@ export class ModalAssignAccessoriesComponent {
   }
 
   async assignAccessory(){
-    this.accessoryAssignment.accessory = this.selectedAccessory;
     this.accessoryAssignment.accessoryId = this.selectedAccessory.id;
     this.accessoryAssignment.studentId = this.student.id;
     this.accessoryAssignment.isReturned = false;
+    this.accessoryAssignment.assignmentReasonId = this.selectedReason.id
     console.log(this.accessoryAssignment);
     this.accessotyAssignmentService.createAccessoryAssignment(this.accessoryAssignment).subscribe({
       next: () => {

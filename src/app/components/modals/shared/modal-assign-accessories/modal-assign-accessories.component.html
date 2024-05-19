@@ -25,10 +25,23 @@
                 <input autocomplete=off type="date" name="assignmentDate" id="assignmentDate" class="w-100 form-control" [(ngModel)]="accessoryAssignment.forecastedReturnDate">
             </div>
         </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="assignmentReason">Motivo di consegna</label>
+                    <select class="form-select" name="assignmentReason" id="assignMentReason" [(ngModel)]="selectedReason">
+                        @for (item of reasonsAssignment; track $index) {
+                        <option [ngValue]="item">{{ item.name }}</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
         <div class="form-group mt-3 mb-3">
             <label for="exampleFormControlTextarea1">Commento</label>
             <textarea class="form-control w-100" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
+        
         <button type="submit" (click)="assignAccessory()" class="btn btn-sm btn-success w-25">Assegna</button>
     </form>
 </div>
