@@ -5,6 +5,21 @@
           <h3>Manager Pc</h3>
         </div>
         <div class="row">
+          <div class="col-6">
+            <form class="d-flex">
+              <input autocomplete=off
+                class="form-control form-control-sm me-2"
+                type="search"
+                name="search"
+                placeholder="Search"
+                aria-label="Search"
+                [(ngModel)]="search"
+              />
+              <button class="btn btn-sm btn-outline-success" type="submit" (click)="searchStudent()">
+                Cerca
+              </button>
+            </form>
+          </div>
           <div class="col-2">
             <button (click)="openImport()" class="btn btn-sm btn-outline-success">
               <i class="fa-solid fa-file-import"></i>

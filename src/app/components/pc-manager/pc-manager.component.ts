@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { Pc as Pc } from '../../models/pc';
 import { PCService } from '../../services/pc.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-pc-manager',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './pc-manager.component.html',
   styleUrl: './pc-manager.component.scss'
 })
@@ -33,5 +34,9 @@ export class PcManagerComponent {
     //   size: 'lg',
     // });
     // m.componentInstance.preRender('Import PCs', 'Select a file to import PCs');
+  }
+
+  searchStudent() {
+    
   }
 }
