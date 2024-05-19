@@ -13,7 +13,7 @@ import { AuthService } from '../../services/auth.service';
 import { PCAssignmentService } from '../../services/pcassignment.service';
 import { AccessoryAssignmentService } from '../../services/accessory-assignment.service';
 import { PCAssignment } from '../../models/pcassignment';
-import { AccessoryAssignment } from '../../models/accessories-assignment';
+import { AccessoryAssignment } from '../../models/accessory-assignment';
 import { Course } from '../../models/course';
 import { ModalNewStudentTicketComponent } from '../modals/modal-new-student-ticket/modal-new-student-ticket.component';
 import { WorkInProgressComponent } from '../dev/work-in-progress/work-in-progress.component';

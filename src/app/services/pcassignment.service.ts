@@ -55,5 +55,7 @@ export class PCAssignmentService {  //servizio usato per comunicare con l'API de
     return this.http.delete(`${this._baseURL}/delete?id=${id}`);
   }
 
-
+  getPcAssignmentsByPcId(pcId: number): Observable<PCAssignment[]> {
+    return this.http.get<PCAssignment[]>(`${this._baseURL}/pcData?pcId=${pcId}`);
+  }
 }

@@ -1,1 +1,64 @@
-<p>modal-create-stock works!</p>
+<div class="row mt-2">
+  <div class="col-6">
+    <label for="brand">Marca</label>
+    <input
+      class="form-control"
+      type="text"
+      id="brand"
+      name="brand"
+      [(ngModel)]="stock.brand"
+    />
+  </div>
+  <div class="col-6">
+    <label for="model">Modello</label>
+    <input
+      class="form-control"
+      type="text"
+      id="model"
+      name="model"
+      [(ngModel)]="stock.model"
+    />
+  </div>
+</div>
+<div class="row mt-2">
+  <label for="purchaseDate">Data acquisto</label>
+  <input
+    class="form-control"
+    type="date"
+    id="purchaseDate"
+    name="purchaseDate"
+    [(ngModel)]="stock.purchaseDate"
+  />
+</div>
+<div class="row mt-2">
+  <div class="col-4">
+    <label for="cpu">CPU</label>
+    <input
+      class="form-control"
+      type="text"
+      id="cpu"
+      name="cpu"
+      [(ngModel)]="stock.cpu"
+    />
+  </div>
+  <div class="col-4">
+    <label for="ram">RAM</label>
+    <input
+      class="form-control"
+      type="text"
+      id="ram"
+      name="ram"
+      [(ngModel)]="stock.ram"
+    />
+  </div>
+  <div class="col-4">
+    <label for="storage">Storage</label>
+    <input
+      class="form-control"
+      type="text"
+      id="storage"
+      name="storage"
+      [(ngModel)]="stock.storage"
+    />
+  </div>
+</div>

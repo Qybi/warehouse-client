@@ -10,6 +10,7 @@ import { ModalAssignAccessoriesComponent } from '../modals/shared/modal-assign-a
 import { ModalAssignPcComponent } from '../modals/shared/modal-assign-pc/modal-assign-pc.component';
 import { ModalAssignBundleComponent } from '../modals/shared/modal-assign-bundle/modal-assign-bundle.component';
 import { RouterModule } from '@angular/router';
+import { WorkInProgressComponent } from '../dev/work-in-progress/work-in-progress.component';
 
 @Component({
   selector: 'app-student-manager',
@@ -62,15 +63,21 @@ export class StudentManagerComponent {
   }
 
   openImport() {
-    const m = this.modalService.open(ModalImportFileComponent, {
+    const m = this.modalService.open(WorkInProgressComponent, {
       size: 'lg',
       backdrop: 'static',
       animation: true,
       keyboard: true,
     });
+    // const m = this.modalService.open(ModalImportFileComponent, {
+    //   size: 'lg',
+    //   backdrop: 'static',
+    //   animation: true,
+    //   keyboard: true,
+    // });
 
-    m.result.then((result) => {
-      console.log(result);
-    });
+    // m.result.then((result) => {
+    //   console.log(result);
+    // });
   }
 }

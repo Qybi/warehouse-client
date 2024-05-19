@@ -1,4 +1,4 @@
-import { AccessoryAssignment } from "../accessories-assignment";
+import { AccessoryAssignment } from "../accessory-assignment";
 import { Course } from "../course";
 import { PCAssignment } from "../pcassignment";
 import { Student } from "../student";

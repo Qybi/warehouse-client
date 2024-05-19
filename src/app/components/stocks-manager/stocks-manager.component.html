@@ -1,1 +1,59 @@
-<p>stocks-manager works!</p>
+<div class="container-fluid mt-4">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <h3>Manager Lotti / Stock</h3>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <form class="d-flex">
+            <input
+              autocomplete="off"
+              class="form-control form-control-sm me-2"
+              type="search"
+              name="search"
+              placeholder="Search"
+              aria-label="Search"
+              [(ngModel)]="search"
+            />
+            <button
+              class="btn btn-sm btn-outline-success"
+              type="submit"
+              (click)="searchPc()"
+            >
+              Cerca
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-2">
+          <button class="btn btn-sm btn-outline-primary" (click)="openAdd()">
+            <i class="fas fa-plus"></i>
+            <span class="me-1">Aggiungi</span>
+          </button>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Data di acquisto</th>
+              <th>Marca</th>
+              <th>Modello</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (s of displayStocks; track $index) {
+            <tr>
+              <td>{{ s.purchaseDate | date : "dd/MM/yyy" }}</td>
+              <td>{{ s.brand }}</td>
+              <td>{{ s.model }}</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
