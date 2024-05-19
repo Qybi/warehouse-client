@@ -1,1 +1,64 @@
-<p>accessories-manager works!</p>
+<div class="container-fluid mt-4">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <h3>Manager accessori</h3>
+      </div>
+      <div class="row">
+        <form>
+          <div class="col-6">
+            <form class="d-flex">
+              <input autocomplete=off
+                class="form-control form-control-sm me-2"
+                type="search"
+                name="search"
+                placeholder="Search"
+                aria-label="Search"
+                  [(ngModel)]="search"
+              />
+              <button class="btn btn-sm btn-outline-success" type="submit" (click)="searchAcc()">
+                Cerca
+              </button>
+            </form>
+          </div>
+        </form>
+      </div>
+      <div class="row mt-2">
+        <div class="col-2">
+          <button class="btn btn-sm btn-outline-primary" (click)="openAdd()">
+            <i class="fas fa-plus"></i>
+            <span class="me-1">Aggiungi</span>
+          </button>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Marca</th>
+              <th>Nome</th>
+              <th>Descrizione</th>
+              <!-- <th>Quantità</th> -->
+              <th>Azioni</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (s of displayAccessories; track $index) {
+            <tr>
+              <td>{{ s.stock?.brand ?? "" }}</td>
+              <td>{{ s.name }}</td>
+              <td>{{ s.description }}</td>
+              <!-- <td>{{ s.qty }}</td> -->
+              <td>
+                <button (click)="openEdit(s)" class="btn btn-primary">
+                  <i class="fas fa-pencil"></i>
+                </button>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,7 +5,7 @@ import {
   HttpParamsOptions,
 }from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AccessoryAssignment } from '../models/accessories-assignment'; // Assicurati di importare il modello corretto per i accessories
+import { AccessoryAssignment } from '../models/accessory-assignment'; // Assicurati di importare il modello corretto per i accessories
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,7 @@ export class AccessoryAssignmentService {  //servizio usato per comunicare con l
     'Content-Type': 'application/json',
   });
   
-  private _baseURL:string = '/courses';  // URL del backend Blazor
+  private _baseURL:string = '/accessoryAssignment';  // URL del backend Blazor
   
   constructor(private http: HttpClient) {}
   
@@ -53,5 +53,9 @@ export class AccessoryAssignmentService {  //servizio usato per comunicare con l
 
   returnAccessory(assignmentId: number, returnDate: string, returnReasonId: number): Observable<boolean> {
     return this.http.get<boolean>(`${this._baseURL}/return?assignmentId=${assignmentId}&returnDate=${returnDate}&returnReasonId=${returnReasonId}`);
+  }
+
+  getPcAssignmentsByAccessoryId(accessoryId: number): Observable<AccessoryAssignment[]> {
+    return this.http.get<AccessoryAssignment[]>(`${this._baseURL}/accessoryData?accessoryId=${accessoryId}`);
   }
 }

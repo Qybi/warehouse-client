@@ -6,6 +6,7 @@ import {
 }from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pc } from '../models/pc'; //import del modello per i PC
+import { PCAssignment } from '../models/pcassignment';
 
 @Injectable({
   providedIn: 'root',
@@ -59,5 +60,4 @@ export class PCService {
   getPcFromSerial(serial: string): Observable<Pc>{
     return this.http.get<Pc>(`${this._baseURL}/getPcFromSerial?serial=${serial}`);
   }
-
 }

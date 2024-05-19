@@ -6,7 +6,7 @@ import {
 }from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Accessory } from '../models/accessory'; //import del modello per gli accessori
-import { AccessoryAssignment } from '../models/accessories-assignment';
+import { AccessoryAssignment } from '../models/accessory-assignment';
 
 @Injectable({
   providedIn: 'root',
@@ -17,13 +17,13 @@ export class AccessoryService {
     'Content-Type': 'application/json',
   });
   
-  private _baseURL:string = '/accessories';  // URL del backend Blazor
+  private _baseURL:string = '/accessory';  // URL del backend Blazor
   
   constructor(private http: HttpClient) {}
 
   //      --- OPERAZIONI CRUD ---
   //funzione che ottiene l'elenco degli accessori
-  getAccessoriess(): Observable<Accessory[]> {
+  getAccessories(): Observable<Accessory[]> {
     return this.http.get<Accessory[]>(`${this._baseURL}`);
   }
   

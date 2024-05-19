@@ -1,3 +1,4 @@
+import { PCAssignment } from "./pcassignment";
 import { PCModelStock } from "./pcmodel-stock";
 import { Student } from "./student";
 
@@ -12,5 +13,5 @@ export interface Pc {
   notes: string;
 
   stock?: PCModelStock;
-  student?: Student;
+  assignments?: PCAssignment[];
 }
